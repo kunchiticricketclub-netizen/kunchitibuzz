@@ -619,6 +619,7 @@ th{
 <!-- LOGIN SYSTEM -->
 <style>
 .login-btn{
+  margin-top:12px;
   background:#ffffff;
   color:#075e54;
   border:0;
@@ -684,7 +685,7 @@ th{
 }
 </style>
 
-<button type="button" class="login-btn" onclick="alert('LOGIN BUTTON IS WORKING')">LOGIN</button>
+<button type="button" class="login-btn" id="loginOpenBtn">LOGIN</button>
 <div class="login-overlay" id="loginOverlay">
   <div class="login-box">
     <span class="login-close" onclick="closeLogin()">×</span>
@@ -702,27 +703,78 @@ th{
 </div>
 
 <script>
-function openLogin(){
-  document.getElementById("loginOverlay").style.display="flex";
-}
+(function () {
+  "use strict";
 
-function closeLogin(){
-  document.getElementById("loginOverlay").style.display="none";
-}
-
-function doLogin(){
-  const username = document.getElementById("loginUsername").value;
-  const password = document.getElementById("loginPassword").value;
-  const message = document.getElementById("loginMessage");
-
-  if(username === "admin" && password === "1234"){
-    message.style.color = "green";
-    message.innerText = "Login successful!";
-  }else{
-    message.style.color = "red";
-    message.innerText = "Wrong username or password.";
+  function get(id) {
+    return document.getElementById(id);
   }
-}
+
+  function openLogin() {
+    var overlay = get("loginOverlay");
+    if (overlay) {
+      overlay.style.display = "flex";
+      document.body.style.overflow = "hidden";
+      var username = get("loginUsername");
+      if (username) username.focus();
+    }
+  }
+
+  function closeLogin() {
+    var overlay = get("loginOverlay");
+    if (overlay) {
+      overlay.style.display = "none";
+      document.body.style.overflow = "";
+    }
+  }
+
+  function doLogin() {
+    var username = get("loginUsername");
+    var password = get("loginPassword");
+    var message = get("loginMessage");
+
+    if (!username || !password || !message) return;
+
+    if (username.value.trim() === "admin" && password.value === "1234") {
+      message.style.color = "green";
+      message.textContent = "Login successful!";
+    } else {
+      message.style.color = "red";
+      message.textContent = "Wrong username or password.";
+    }
+  }
+
+  function init() {
+    var openBtn = get("loginOpenBtn");
+    var closeBtn = document.querySelector(".login-close");
+    var submitBtn = document.querySelector(".login-submit");
+    var overlay = get("loginOverlay");
+
+    if (openBtn) openBtn.addEventListener("click", openLogin);
+    if (closeBtn) closeBtn.addEventListener("click", closeLogin);
+    if (submitBtn) submitBtn.addEventListener("click", doLogin);
+
+    if (overlay) {
+      overlay.addEventListener("click", function (event) {
+        if (event.target === overlay) closeLogin();
+      });
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeLogin();
+    });
+  }
+
+  window.openLogin = openLogin;
+  window.closeLogin = closeLogin;
+  window.doLogin = doLogin;
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
 </script>
 </body>
 </html>
