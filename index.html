@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>KunchitiBuzz - Cricket</title>
 
 <style>
@@ -13,35 +12,25 @@
   padding:0;
 }
 
-html{
-  scroll-behavior:smooth;
-}
-
 body{
   font-family:Arial,Helvetica,sans-serif;
   background:#f3f5f7;
   color:#17202a;
 }
 
-body.lock{
-  overflow:hidden;
-}
-
-/* HEADER */
 .header{
   background:#075e54;
   color:white;
-  padding:15px;
+  padding:18px 16px;
   position:sticky;
   top:0;
-  z-index:100;
+  z-index:10;
 }
 
 .top{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:10px;
 }
 
 .logo{
@@ -53,129 +42,47 @@ body.lock{
   color:#ffd54f;
 }
 
-.header-buttons{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
-
-.header-login{
-  border:0;
-  background:white;
-  color:#075e54;
-  padding:9px 12px;
-  border-radius:8px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
 .menu{
-  width:43px;
-  height:43px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:27px;
-  cursor:pointer;
-  border-radius:8px;
+  font-size:25px;
 }
 
-.menu:active{
-  background:rgba(255,255,255,.15);
-}
-
-/* SEARCH */
 .search{
-  margin-top:14px;
+  margin-top:15px;
   background:white;
-  border-radius:28px;
-  padding:12px 16px;
+  border-radius:25px;
+  padding:11px 15px;
+  color:#777;
 }
 
-.search input{
-  width:100%;
-  border:0;
-  outline:0;
-  font-size:16px;
-  background:transparent;
-}
-
-/* MOBILE MENU */
-.mobile-menu{
-  display:none;
-  position:absolute;
-  right:15px;
-  top:70px;
-  width:220px;
-  background:white;
-  border-radius:12px;
-  box-shadow:0 8px 30px rgba(0,0,0,.25);
-  overflow:hidden;
-  z-index:500;
-}
-
-.mobile-menu.open{
-  display:block;
-}
-
-.mobile-menu button{
-  width:100%;
-  border:0;
-  background:white;
-  padding:15px;
-  text-align:left;
-  font-weight:bold;
-  font-size:14px;
-  cursor:pointer;
-}
-
-.mobile-menu button:active{
-  background:#e8f5f3;
-}
-
-/* NAVIGATION */
 .nav{
   background:white;
   display:flex;
   overflow-x:auto;
   border-bottom:1px solid #ddd;
-  position:sticky;
-  top:94px;
-  z-index:90;
 }
 
-.nav button{
-  border:0;
-  background:white;
+.nav div{
   padding:15px 17px;
   white-space:nowrap;
   font-size:14px;
   font-weight:bold;
-  cursor:pointer;
-  color:#17202a;
 }
 
-.nav button.active{
+.nav div:first-child{
   color:#075e54;
   border-bottom:3px solid #075e54;
 }
 
-/* CONTENT */
 .container{
   max-width:1000px;
   margin:auto;
   padding:15px;
 }
 
-section{
-  scroll-margin-top:130px;
-  margin-bottom:28px;
-}
-
 .section-title{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   margin:22px 0 12px;
 }
 
@@ -183,33 +90,30 @@ section{
   font-size:20px;
 }
 
-.section-link{
-  border:0;
-  background:none;
+.section-title a{
   color:#087f70;
+  font-size:13px;
   font-weight:bold;
-  cursor:pointer;
 }
 
-/* LIVE */
 .live-card{
   background:white;
-  border-radius:14px;
-  padding:18px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-  cursor:pointer;
+  border-radius:12px;
+  padding:17px;
+  box-shadow:0 2px 8px #00000012;
 }
 
 .live-label{
   color:#e53935;
   font-weight:bold;
+  font-size:13px;
   margin-bottom:12px;
 }
 
 .match-title{
   color:#777;
   font-size:13px;
-  margin-bottom:18px;
+  margin-bottom:15px;
 }
 
 .teams{
@@ -220,49 +124,48 @@ section{
 
 .team{
   text-align:center;
-  width:40%;
+  width:38%;
 }
 
 .team-logo{
-  width:58px;
-  height:58px;
+  width:55px;
+  height:55px;
   margin:auto;
   border-radius:50%;
   background:#e8f5f3;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:26px;
+  font-size:25px;
 }
 
 .team-name{
-  font-weight:bold;
   margin-top:8px;
+  font-weight:bold;
 }
 
 .score{
-  font-size:19px;
-  font-weight:bold;
   margin-top:5px;
+  font-size:18px;
+  font-weight:bold;
 }
 
 .vs{
-  color:#888;
   font-weight:bold;
+  color:#999;
 }
 
 .status{
-  margin-top:18px;
-  padding:11px;
+  text-align:center;
+  margin-top:17px;
+  padding:10px;
+  border-radius:8px;
   background:#e8f5e9;
   color:#218838;
-  border-radius:8px;
-  text-align:center;
-  font-weight:bold;
   font-size:13px;
+  font-weight:bold;
 }
 
-/* CARDS */
 .cards{
   display:flex;
   gap:12px;
@@ -270,12 +173,11 @@ section{
 }
 
 .card{
-  min-width:235px;
+  min-width:230px;
   background:white;
-  padding:16px;
-  border-radius:13px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-  cursor:pointer;
+  border-radius:12px;
+  padding:15px;
+  box-shadow:0 2px 8px #00000010;
 }
 
 .card small{
@@ -289,16 +191,15 @@ section{
 
 .result{
   color:#087f70;
-  font-weight:bold;
   font-size:13px;
+  font-weight:bold;
 }
 
-/* TOURNAMENT */
 .tournament{
   background:linear-gradient(135deg,#075e54,#087f70);
   color:white;
-  padding:22px;
-  border-radius:15px;
+  border-radius:14px;
+  padding:20px;
 }
 
 .tournament h2{
@@ -307,32 +208,31 @@ section{
 
 .tournament p{
   font-size:13px;
-  margin-top:6px;
+  opacity:.9;
 }
 
-.yellow-button{
-  margin-top:16px;
-  border:0;
+.button{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 16px;
   background:#ffd54f;
   color:#222;
-  padding:11px 16px;
-  border-radius:8px;
+  border-radius:7px;
   font-weight:bold;
-  cursor:pointer;
+  font-size:13px;
 }
 
-/* TABLE */
 .points{
   background:white;
-  border-radius:13px;
-  overflow:auto;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 2px 8px #00000010;
 }
 
 table{
   width:100%;
   border-collapse:collapse;
-  min-width:450px;
+  font-size:13px;
 }
 
 th,td{
@@ -343,17 +243,16 @@ th,td{
 
 th{
   background:#f5f7f8;
+  color:#555;
 }
 
-/* PLAYERS */
 .player{
-  min-width:170px;
+  min-width:160px;
   background:white;
-  padding:16px;
-  border-radius:13px;
+  border-radius:12px;
+  padding:15px;
   text-align:center;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-  cursor:pointer;
+  box-shadow:0 2px 8px #00000010;
 }
 
 .avatar{
@@ -363,13 +262,14 @@ th{
   border-radius:50%;
   background:#d9eeee;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
   font-size:28px;
 }
 
 .player h3{
   margin-top:9px;
+  font-size:15px;
 }
 
 .player p{
@@ -378,43 +278,46 @@ th{
   margin-top:5px;
 }
 
-/* VIDEOS */
 .media{
   min-width:240px;
   height:140px;
-  border-radius:13px;
+  border-radius:12px;
   background:linear-gradient(135deg,#263238,#607d8b);
   color:white;
-  padding:15px;
   display:flex;
-  align-items:flex-end;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:14px;
   position:relative;
-  cursor:pointer;
+  overflow:hidden;
 }
 
 .play{
   position:absolute;
-  top:42px;
+  top:45px;
   left:50%;
   transform:translateX(-50%);
-  width:45px;
-  height:45px;
+  width:42px;
+  height:42px;
   border-radius:50%;
   background:white;
   color:#075e54;
   display:flex;
   align-items:center;
   justify-content:center;
+  font-size:18px;
 }
 
-/* NEWS */
+.media h3{
+  font-size:14px;
+}
+
 .news{
   background:white;
-  padding:16px;
-  border-radius:13px;
+  border-radius:12px;
+  padding:15px;
   margin-bottom:10px;
-  box-shadow:0 2px 8px rgba(0,0,0,.07);
-  cursor:pointer;
+  box-shadow:0 2px 7px #0000000d;
 }
 
 .news h3{
@@ -427,157 +330,45 @@ th{
   font-size:12px;
 }
 
-/* FOOTER */
-.footer{
+.bottom{
+  margin-top:30px;
   background:#17202a;
   color:white;
-  padding:30px 15px;
+  padding:30px 18px;
   text-align:center;
-  margin-top:30px;
 }
 
-.footer p{
+.bottom h2{
+  margin-bottom:8px;
+}
+
+.bottom p{
   color:#aaa;
-  margin-top:8px;
   font-size:12px;
 }
 
-/* LOGIN */
-.login-overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.7);
-  z-index:10000;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
-}
-
-.login-overlay.open{
-  display:flex;
-}
-
-.login-box{
-  width:100%;
-  max-width:380px;
-  background:white;
-  padding:25px;
-  border-radius:15px;
-  box-shadow:0 10px 40px rgba(0,0,0,.4);
-}
-
-.login-top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.login-top h2{
-  color:#075e54;
-}
-
-.login-close{
-  border:0;
-  background:none;
-  font-size:30px;
-  cursor:pointer;
-}
-
-.login-box input{
-  width:100%;
-  padding:13px;
-  margin-top:12px;
-  border:1px solid #ccc;
-  border-radius:8px;
-  outline:none;
-  font-size:15px;
-}
-
-.login-submit{
-  width:100%;
-  padding:13px;
-  margin-top:12px;
-  background:#075e54;
-  color:white;
-  border:0;
-  border-radius:8px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.login-message{
-  margin-top:12px;
-  font-weight:bold;
-  min-height:20px;
-}
-
-/* TOAST */
-.toast{
-  position:fixed;
-  left:50%;
-  bottom:25px;
-  transform:translateX(-50%);
-  background:#17202a;
-  color:white;
-  padding:12px 18px;
-  border-radius:10px;
-  z-index:11000;
-  display:none;
-  font-size:13px;
-  font-weight:bold;
-  max-width:90%;
-  text-align:center;
-}
-
-.toast.show{
-  display:block;
-}
-
-/* SEARCH NO RESULT */
-.no-result{
-  display:none;
-  background:white;
-  padding:20px;
-  border-radius:12px;
-  text-align:center;
-  color:#777;
-  margin-top:10px;
-}
-
-@media(max-width:650px){
-  .header-login{
-    display:none;
-  }
-
-  .nav{
-    top:0;
-  }
-
-  .cards{
-    padding-bottom:5px;
-  }
-}
-
 @media(min-width:700px){
+
+  .container{
+    padding:25px;
+  }
+
   .cards{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     overflow:visible;
   }
 
-  .card,
-  .player,
-  .media{
+  .card{
     min-width:0;
   }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
 
   <div class="top">
@@ -586,138 +377,41 @@ th{
       Kunchiti<span>Buzz</span> 🏏
     </div>
 
-    <div class="header-buttons">
-
-      <button type="button"
-              class="header-login"
-              id="headerLogin">
-        🔐 LOGIN
-      </button>
-
-      <div class="menu" id="menuButton">
-        ☰
-      </div>
-
+    <div class="menu">
+      ☰
     </div>
 
   </div>
 
   <div class="search">
-    <input
-      type="search"
-      id="searchInput"
-      placeholder="🔍 Search matches, teams, players..."
-      autocomplete="off">
-  </div>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu">
-
-    <button type="button" data-target="home">🏠 Home</button>
-
-    <button type="button" data-target="live">🔴 Live Matches</button>
-
-    <button type="button" data-target="matches">🏏 Matches</button>
-
-    <button type="button" data-target="tournaments">🏆 Tournaments</button>
-
-    <button type="button" data-target="teams">👥 Teams</button>
-
-    <button type="button" data-target="players">⭐ Players</button>
-
-    <button type="button" data-target="videos">🎬 Videos</button>
-
-    <button type="button" data-target="news">📰 News</button>
-
-    <button type="button" id="mobileLogin">
-      🔐 Login
-    </button>
-
+    🔍 Search matches, teams, players...
   </div>
 
 </header>
 
+<nav class="nav">
 
-<!-- NAVIGATION -->
-<nav class="nav" id="mainNav">
-
-  <button type="button"
-          class="active"
-          data-target="home">
-    HOME
-  </button>
-
-  <button type="button" data-target="live">
-    LIVE
-  </button>
-
-  <button type="button" data-target="matches">
-    MATCHES
-  </button>
-
-  <button type="button" data-target="tournaments">
-    TOURNAMENTS
-  </button>
-
-  <button type="button" data-target="teams">
-    TEAMS
-  </button>
-
-  <button type="button" data-target="players">
-    PLAYERS
-  </button>
-
-  <button type="button" data-target="videos">
-    VIDEOS
-  </button>
-
-  <button type="button" data-target="news">
-    NEWS
-  </button>
+  <div>HOME</div>
+  <div>LIVE</div>
+  <div>MATCHES</div>
+  <div>TOURNAMENTS</div>
+  <div>TEAMS</div>
+  <div>PLAYERS</div>
+  <div>VIDEOS</div>
+  <div>NEWS</div>
 
 </nav>
 
-
 <main class="container">
 
-<!-- HOME -->
-<section id="home">
+<section>
 
   <div class="section-title">
-    <h2>🏠 KunchitiBuzz</h2>
+    <h2>🔴 Live Matches</h2>
+    <a>VIEW ALL</a>
   </div>
 
   <div class="live-card">
-    <h2>Welcome to KunchitiBuzz 🏏</h2>
-
-    <p style="margin-top:8px;color:#777;">
-      Live cricket scores, matches, tournaments,
-      teams, players and cricket updates.
-    </p>
-  </div>
-
-</section>
-
-
-<!-- LIVE -->
-<section id="live">
-
-  <div class="section-title">
-
-    <h2>🔴 Live Matches</h2>
-
-    <button
-      type="button"
-      class="section-link"
-      data-target="live">
-      VIEW ALL
-    </button>
-
-  </div>
-
-  <div
-    class="live-card searchable"
-    data-search="live mahroom sheyaq team a team b 85 3 dasht kunchiti">
 
     <div class="live-label">
       ● LIVE NOW
@@ -780,27 +474,21 @@ th{
 </section>
 
 
-<!-- MATCHES -->
-<section id="matches">
+<section>
 
   <div class="section-title">
 
     <h2>🏏 Recent Matches</h2>
 
-    <button
-      type="button"
-      class="section-link"
-      data-target="matches">
+    <a>
       VIEW ALL
-    </button>
+    </a>
 
   </div>
 
   <div class="cards">
 
-    <div
-      class="card searchable"
-      data-search="shaheed mehboob jan shaheed yar jan knockout">
+    <div class="card">
 
       <small>
         17 AUG • KNOCKOUT
@@ -817,9 +505,7 @@ th{
     </div>
 
 
-    <div
-      class="card searchable"
-      data-search="kunchiti stars dasht xi league">
+    <div class="card">
 
       <small>
         16 AUG • LEAGUE
@@ -836,9 +522,7 @@ th{
     </div>
 
 
-    <div
-      class="card searchable"
-      data-search="dasht warriors kunchiti club league">
+    <div class="card">
 
       <small>
         15 AUG • LEAGUE
@@ -859,11 +543,14 @@ th{
 </section>
 
 
-<!-- TOURNAMENTS -->
-<section id="tournaments">
+<section>
 
   <div class="section-title">
-    <h2>🏆 Featured Tournament</h2>
+
+    <h2>
+      🏆 Featured Tournament
+    </h2>
+
   </div>
 
   <div class="tournament">
@@ -876,36 +563,30 @@ th{
       Cricket Tournament • Dasht Kunchiti
     </p>
 
-    <p>
-      Follow matches, teams, players,
-      results and points table.
+    <p style="margin-top:7px;">
+      Follow matches, teams, players, results and points table.
     </p>
 
-    <button
-      type="button"
-      class="yellow-button"
-      id="exploreTournament">
+    <div class="button">
       EXPLORE TOURNAMENT
-    </button>
+    </div>
 
   </div>
 
 </section>
 
 
-<!-- TEAMS -->
-<section id="teams">
+<section>
 
   <div class="section-title">
 
-    <h2>📊 Points Table</h2>
+    <h2>
+      📊 Points Table
+    </h2>
 
-    <button
-      type="button"
-      class="section-link"
-      data-target="teams">
+    <a>
       FULL TABLE
-    </button>
+    </a>
 
   </div>
 
@@ -913,49 +594,49 @@ th{
 
     <table>
 
-      <thead>
+      <tr>
 
-        <tr>
-          <th>#</th>
-          <th>TEAM</th>
-          <th>P</th>
-          <th>W</th>
-          <th>L</th>
-          <th>PTS</th>
-        </tr>
+        <th>#</th>
+        <th>TEAM</th>
+        <th>P</th>
+        <th>W</th>
+        <th>L</th>
+        <th>PTS</th>
 
-      </thead>
+      </tr>
 
-      <tbody>
+      <tr>
 
-        <tr>
-          <td>1</td>
-          <td>Team A</td>
-          <td>3</td>
-          <td>3</td>
-          <td>0</td>
-          <td>6</td>
-        </tr>
+        <td>1</td>
+        <td>Team A</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>6</td>
 
-        <tr>
-          <td>2</td>
-          <td>Team B</td>
-          <td>3</td>
-          <td>2</td>
-          <td>1</td>
-          <td>4</td>
-        </tr>
+      </tr>
 
-        <tr>
-          <td>3</td>
-          <td>Team C</td>
-          <td>3</td>
-          <td>1</td>
-          <td>2</td>
-          <td>2</td>
-        </tr>
+      <tr>
 
-      </tbody>
+        <td>2</td>
+        <td>Team B</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>4</td>
+
+      </tr>
+
+      <tr>
+
+        <td>3</td>
+        <td>Team C</td>
+        <td>3</td>
+        <td>1</td>
+        <td>2</td>
+        <td>2</td>
+
+      </tr>
 
     </table>
 
@@ -964,27 +645,23 @@ th{
 </section>
 
 
-<!-- PLAYERS -->
-<section id="players">
+<section>
 
   <div class="section-title">
 
-    <h2>⭐ Featured Players</h2>
+    <h2>
+      ⭐ Featured Players
+    </h2>
 
-    <button
-      type="button"
-      class="section-link"
-      data-target="players">
+    <a>
       ALL PLAYERS
-    </button>
+    </a>
 
   </div>
 
   <div class="cards">
 
-    <div
-      class="player searchable"
-      data-search="player all rounder runs 340">
+    <div class="player">
 
       <div class="avatar">
         👤
@@ -1005,9 +682,7 @@ th{
     </div>
 
 
-    <div
-      class="player searchable"
-      data-search="player batsman runs 410">
+    <div class="player">
 
       <div class="avatar">
         👤
@@ -1028,9 +703,7 @@ th{
     </div>
 
 
-    <div
-      class="player searchable"
-      data-search="player bowler wickets 18">
+    <div class="player">
 
       <div class="avatar">
         👤
@@ -1055,27 +728,23 @@ th{
 </section>
 
 
-<!-- VIDEOS -->
-<section id="videos">
+<section>
 
   <div class="section-title">
 
-    <h2>🎬 Videos & Highlights</h2>
+    <h2>
+      🎬 Videos & Highlights
+    </h2>
 
-    <button
-      type="button"
-      class="section-link"
-      data-target="videos">
+    <a>
       SEE ALL
-    </button>
+    </a>
 
   </div>
 
   <div class="cards">
 
-    <div
-      class="media searchable"
-      data-search="winning moments video">
+    <div class="media">
 
       <div class="play">
         ▶
@@ -1088,9 +757,7 @@ th{
     </div>
 
 
-    <div
-      class="media searchable"
-      data-search="best batting performance video">
+    <div class="media">
 
       <div class="play">
         ▶
@@ -1103,9 +770,7 @@ th{
     </div>
 
 
-    <div
-      class="media searchable"
-      data-search="match highlights video">
+    <div class="media">
 
       <div class="play">
         ▶
@@ -1122,26 +787,22 @@ th{
 </section>
 
 
-<!-- NEWS -->
-<section id="news">
+<section>
 
   <div class="section-title">
 
-    <h2>📰 Latest Cricket News</h2>
+    <h2>
+      📰 Latest Cricket News
+    </h2>
 
-    <button
-      type="button"
-      class="section-link"
-      data-target="news">
+    <a>
       MORE NEWS
-    </button>
+    </a>
 
   </div>
 
 
-  <div
-    class="news searchable"
-    data-search="tournament dasht kunchiti latest match updates">
+  <div class="news">
 
     <h3>
       Tournament action continues in Dasht Kunchiti
@@ -1154,9 +815,7 @@ th{
   </div>
 
 
-  <div
-    class="news searchable"
-    data-search="local teams next big match cricket">
+  <div class="news">
 
     <h3>
       Local teams prepare for the next big match
@@ -1169,9 +828,7 @@ th{
   </div>
 
 
-  <div
-    class="news searchable"
-    data-search="player performances statistics">
+  <div class="news">
 
     <h3>
       Player performances and match statistics
@@ -1185,15 +842,10 @@ th{
 
 </section>
 
-<div class="no-result" id="noResult">
-  No results found.
-</div>
-
 </main>
 
 
-<!-- FOOTER -->
-<footer class="footer">
+<footer class="bottom">
 
   <h2>
     KunchitiBuzz 🏏
@@ -1203,552 +855,184 @@ th{
     Your local cricket platform
   </p>
 
-  <p>
+  <p style="margin-top:12px;">
     Live Scores • Tournaments • Teams • Players • Videos
   </p>
 
 </footer>
 
 
+<!-- LOGIN SYSTEM -->
+
+<style>
+
+.login-btn{
+  position:fixed;
+  top:18px;
+  right:60px;
+  z-index:100;
+  background:#ffffff;
+  color:#075e54;
+  border:0;
+  padding:10px 18px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.login-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+}
+
+.login-box{
+  width:90%;
+  max-width:380px;
+  background:white;
+  padding:25px;
+  border-radius:15px;
+  box-shadow:0 10px 40px rgba(0,0,0,.3);
+}
+
+.login-box h2{
+  margin-top:0;
+  color:#075e54;
+}
+
+.login-box input{
+  width:100%;
+  padding:13px;
+  margin:8px 0;
+  border:1px solid #ccc;
+  border-radius:8px;
+  box-sizing:border-box;
+}
+
+.login-submit{
+  width:100%;
+  padding:13px;
+  margin-top:10px;
+  background:#075e54;
+  color:white;
+  border:0;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.login-close{
+  float:right;
+  font-size:25px;
+  cursor:pointer;
+}
+
+#loginMessage{
+  margin-top:10px;
+  font-weight:bold;
+}
+
+</style>
+
+
+<!-- LOGIN BUTTON -->
+
+<button
+  type="button"
+  class="login-btn"
+  onclick="openLogin()">
+
+  LOGIN
+
+</button>
+
+
 <!-- LOGIN POPUP -->
+
 <div
   class="login-overlay"
   id="loginOverlay">
 
-  <div
-    class="login-box"
-    role="dialog"
-    aria-modal="true">
+  <div class="login-box">
 
-    <div class="login-top">
+    <span
+      class="login-close"
+      onclick="closeLogin()">
 
-      <h2>
-        KunchitiBuzz Login
-      </h2>
+      ×
 
-      <button
-        type="button"
-        class="login-close"
-        id="loginClose">
-        ×
-      </button>
+    </span>
 
-    </div>
+    <h2>
+      KunchitiBuzz Login
+    </h2>
 
     <input
       type="text"
       id="loginUsername"
-      placeholder="Username"
-      autocomplete="username">
+      placeholder="Username">
 
     <input
       type="password"
       id="loginPassword"
-      placeholder="Password"
-      autocomplete="current-password">
+      placeholder="Password">
 
     <button
-      type="button"
       class="login-submit"
-      id="loginSubmit">
+      type="button"
+      onclick="doLogin()">
+
       LOGIN
+
     </button>
 
-    <div
-      class="login-message"
-      id="loginMessage">
-    </div>
-
-    <p style="margin-top:10px;color:#777;font-size:12px;">
-      Demo login: admin / 1234
-    </p>
+    <div id="loginMessage"></div>
 
   </div>
 
 </div>
 
 
-<!-- TOAST -->
-<div
-  class="toast"
-  id="toast">
-</div>
-
-
 <script>
-
-"use strict";
-
-/* =========================
-   BASIC ELEMENTS
-========================= */
-
-const menuButton =
-  document.getElementById("menuButton");
-
-const mobileMenu =
-  document.getElementById("mobileMenu");
-
-const searchInput =
-  document.getElementById("searchInput");
-
-const toast =
-  document.getElementById("toast");
-
-
-/* =========================
-   TOAST MESSAGE
-========================= */
-
-function showToast(message){
-
-  toast.textContent = message;
-
-  toast.classList.add("show");
-
-  clearTimeout(window.toastTimer);
-
-  window.toastTimer =
-    setTimeout(function(){
-
-      toast.classList.remove("show");
-
-    },2200);
-}
-
-
-/* =========================
-   MOBILE MENU
-========================= */
-
-menuButton.addEventListener(
-  "click",
-  function(event){
-
-    event.stopPropagation();
-
-    mobileMenu.classList.toggle("open");
-
-  }
-);
-
-
-document.addEventListener(
-  "click",
-  function(event){
-
-    if(
-      !mobileMenu.contains(event.target) &&
-      !menuButton.contains(event.target)
-    ){
-
-      mobileMenu.classList.remove("open");
-
-    }
-
-  }
-);
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-function goToSection(target){
-
-  const section =
-    document.getElementById(target);
-
-  if(!section){
-    return;
-  }
-
-  mobileMenu.classList.remove("open");
-
-  document
-    .querySelectorAll("#mainNav button")
-    .forEach(function(button){
-
-      button.classList.remove("active");
-
-      if(
-        button.dataset.target === target
-      ){
-
-        button.classList.add("active");
-
-      }
-
-    });
-
-
-  if(target === "home"){
-
-    window.scrollTo({
-      top:0,
-      behavior:"smooth"
-    });
-
-  }else{
-
-    section.scrollIntoView({
-      behavior:"smooth",
-      block:"start"
-    });
-
-  }
-
-}
-
-
-/* DESKTOP NAV */
-
-document
-  .querySelectorAll("#mainNav button")
-  .forEach(function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        goToSection(
-          button.dataset.target
-        );
-
-      }
-    );
-
-  });
-
-
-/* MOBILE NAV */
-
-document
-  .querySelectorAll(
-    "#mobileMenu button[data-target]"
-  )
-  .forEach(function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        goToSection(
-          button.dataset.target
-        );
-
-      }
-    );
-
-  });
-
-
-/* SECTION LINKS */
-
-document
-  .querySelectorAll(".section-link")
-  .forEach(function(button){
-
-    button.addEventListener(
-      "click",
-      function(){
-
-        goToSection(
-          button.dataset.target
-        );
-
-      }
-    );
-
-  });
-
-
-/* =========================
-   TOURNAMENT BUTTON
-========================= */
-
-document
-  .getElementById("exploreTournament")
-  .addEventListener(
-    "click",
-    function(){
-
-      goToSection("tournaments");
-
-      showToast(
-        "Tournament selected"
-      );
-
-    }
-  );
-
-
-/* =========================
-   SEARCH
-========================= */
-
-searchInput.addEventListener(
-  "input",
-  function(){
-
-    const query =
-      searchInput.value
-        .trim()
-        .toLowerCase();
-
-    const items =
-      document.querySelectorAll(
-        ".searchable"
-      );
-
-    let found = 0;
-
-    items.forEach(function(item){
-
-      const text =
-        (
-          item.dataset.search ||
-          item.textContent
-        ).toLowerCase();
-
-      if(
-        query === "" ||
-        text.includes(query)
-      ){
-
-        item.style.display = "";
-
-        found++;
-
-      }else{
-
-        item.style.display = "none";
-
-      }
-
-    });
-
-
-    const noResult =
-      document.getElementById(
-        "noResult"
-      );
-
-    if(
-      query !== "" &&
-      found === 0
-    ){
-
-      noResult.style.display =
-        "block";
-
-    }else{
-
-      noResult.style.display =
-        "none";
-
-    }
-
-  }
-);
-
-
-/* =========================
-   CARD CLICKS
-========================= */
-
-document
-  .querySelectorAll(
-    ".live-card,.card,.player,.media,.news"
-  )
-  .forEach(function(card){
-
-    card.addEventListener(
-      "click",
-      function(){
-
-        const title =
-          card.querySelector("h3");
-
-        if(title){
-
-          showToast(
-            title.textContent.trim()
-          );
-
-        }else{
-
-          showToast(
-            "Opening cricket details..."
-          );
-
-        }
-
-      }
-    );
-
-  });
-
-
-/* =========================
-   LOGIN
-========================= */
-
-const loginOverlay =
-  document.getElementById(
-    "loginOverlay"
-  );
-
-const headerLogin =
-  document.getElementById(
-    "headerLogin"
-  );
-
-const mobileLogin =
-  document.getElementById(
-    "mobileLogin"
-  );
-
-const loginClose =
-  document.getElementById(
-    "loginClose"
-  );
-
-const loginSubmit =
-  document.getElementById(
-    "loginSubmit"
-  );
-
-const loginUsername =
-  document.getElementById(
-    "loginUsername"
-  );
-
-const loginPassword =
-  document.getElementById(
-    "loginPassword"
-  );
-
-const loginMessage =
-  document.getElementById(
-    "loginMessage"
-  );
-
-
-/* OPEN LOGIN */
 
 function openLogin(){
 
-  loginOverlay.classList.add(
-    "open"
-  );
-
-  document.body.classList.add(
-    "lock"
-  );
-
-  loginMessage.textContent = "";
-
-  setTimeout(
-    function(){
-
-      loginUsername.focus();
-
-    },
-    100
-  );
+  document.getElementById(
+    "loginOverlay"
+  ).style.display = "flex";
 
 }
 
-
-/* CLOSE LOGIN */
 
 function closeLogin(){
 
-  loginOverlay.classList.remove(
-    "open"
-  );
-
-  document.body.classList.remove(
-    "lock"
-  );
+  document.getElementById(
+    "loginOverlay"
+  ).style.display = "none";
 
 }
 
 
-/* LOGIN BUTTONS */
-
-headerLogin.addEventListener(
-  "click",
-  openLogin
-);
-
-
-mobileLogin.addEventListener(
-  "click",
-  function(){
-
-    mobileMenu.classList.remove(
-      "open"
-    );
-
-    openLogin();
-
-  }
-);
-
-
-loginClose.addEventListener(
-  "click",
-  closeLogin
-);
-
-
-/* CLOSE BY CLICKING OUTSIDE */
-
-loginOverlay.addEventListener(
-  "click",
-  function(event){
-
-    if(
-      event.target === loginOverlay
-    ){
-
-      closeLogin();
-
-    }
-
-  }
-);
-
-
-/* =========================
-   LOGIN CHECK
-========================= */
-
-function performLogin(){
+function doLogin(){
 
   const username =
-    loginUsername.value.trim();
+    document.getElementById(
+      "loginUsername"
+    ).value.trim();
 
   const password =
-    loginPassword.value;
+    document.getElementById(
+      "loginPassword"
+    ).value.trim();
 
-
-  if(
-    username === "" ||
-    password === ""
-  ){
-
-    loginMessage.style.color =
-      "#e53935";
-
-    loginMessage.textContent =
-      "Please enter username and password.";
-
-    return;
-
-  }
+  const message =
+    document.getElementById(
+      "loginMessage"
+    );
 
 
   if(
@@ -1756,92 +1040,30 @@ function performLogin(){
     password === "1234"
   ){
 
-    loginMessage.style.color =
-      "#218838";
+    message.style.color = "green";
 
-    loginMessage.textContent =
-      "Login successful!";
+    message.innerText =
+      "Login successful! Opening Admin Panel...";
 
-    showToast(
-      "Admin login successful"
-    );
 
-    setTimeout(
-      closeLogin,
-      1000
-    );
+    setTimeout(function(){
+
+      window.location.href =
+        "admin.html";
+
+    },500);
+
 
   }else{
 
-    loginMessage.style.color =
-      "#e53935";
+    message.style.color = "red";
 
-    loginMessage.textContent =
+    message.innerText =
       "Wrong username or password.";
 
   }
 
 }
-
-
-/* LOGIN SUBMIT */
-
-loginSubmit.addEventListener(
-  "click",
-  performLogin
-);
-
-
-/* ENTER KEY */
-
-loginPassword.addEventListener(
-  "keydown",
-  function(event){
-
-    if(
-      event.key === "Enter"
-    ){
-
-      performLogin();
-
-    }
-
-  }
-);
-
-
-/* ESC KEY */
-
-document.addEventListener(
-  "keydown",
-  function(event){
-
-    if(
-      event.key === "Escape"
-    ){
-
-      closeLogin();
-
-      mobileMenu.classList.remove(
-        "open"
-      );
-
-    }
-
-  }
-);
-
-
-/* MAKE FUNCTIONS AVAILABLE */
-
-window.openLogin =
-  openLogin;
-
-window.closeLogin =
-  closeLogin;
-
-window.performLogin =
-  performLogin;
 
 </script>
 
