@@ -1,1 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KunchitiBuzz - Cricket</title>
 
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f5f7;
+  color:#17202a;
+}
+
+.header{
+  background:#075e54;
+  color:white;
+  padding:18px 16px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:800;
+}
+
+.logo span{
+  color:#ffd54f;
+}
+
+.menu{
+  font-size:25px;
+}
+
+.search{
+  margin-top:15px;
+  background:white;
+  border-radius:25px;
+  padding:11px 15px;
+  color:#777;
+}
+
+.nav{
+  background:white;
+  display:flex;
+  overflow-x:auto;
+  border-bottom:1px solid #ddd;
+}
+
+.nav div{
+  padding:15px 17px;
+  white-space:nowrap;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.nav div:first-child{
+  color:#075e54;
+  border-bottom:3px solid #075e54;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:15px;
+}
+
+.section-title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:22px 0 12px;
+}
+
+.section-title h2{
+  font-size:20px;
+}
+
+.section-title a{
+  color:#087f70;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.live-card{
+  background:white;
+  border-radius:12px;
+  padding:17px;
+  box-shadow:0 2px 8px #00000012;
+}
+
+.live-label{
+  color:#e53935;
+  font-weight:bold;
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.match-title{
+  color:#777;
+  font-size:13px;
+  margin-bottom:15px;
+}
+
+.teams{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.team{
+  text-align:center;
+  width:38%;
+}
+
+.team-logo{
+  width:55px;
+  height:55px;
+  margin:auto;
+  border-radius:50%;
+  background:#e8f5f3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
+}
+
+.team-name{
+  margin-top:8px;
+  font-weight:bold;
+}
+
+.score{
+  margin-top:5px;
+  font-size:18px;
+  font-weight:bold;
+}
+
+.vs{
+  font-weight:bold;
+  color:#999;
+}
+
+.status{
+  text-align:center;
+  margin-top:17px;
+  padding:10px;
+  border-radius:8px;
+  background:#e8f5e9;
+  color:#218838;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.cards{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+}
+
+.card{
+  min-width:230px;
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  box-shadow:0 2px 8px #00000010;
+}
+
+.card small{
+  color:#888;
+}
+
+.card h3{
+  margin:10px 0;
+  font-size:16px;
+}
+
+.result{
+  color:#087f70;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.tournament{
+  background:linear-gradient(135deg,#075e54,#087f70);
+  color:white;
+  border-radius:14px;
+  padding:20px;
+}
+
+.tournament h2{
+  margin-bottom:8px;
+}
+
+.tournament p{
+  font-size:13px;
+  opacity:.9;
+}
+
+.button{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 16px;
+  background:#ffd54f;
+  color:#222;
+  border-radius:7px;
+  font-weight:bold;
+  font-size:13px;
+}
+
+.points{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 2px 8px #00000010;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
+}
+
+th,td{
+  padding:12px 9px;
+  text-align:center;
+  border-bottom:1px solid #eee;
+}
+
+th{
+  background:#f5f7f8;
+  color:#555;
+}
+
+.player{
+  min-width:160px;
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 2px 8px #00000010;
+}
+
+.avatar{
+  width:65px;
+  height:65px;
+  margin:auto;
+  border-radius:50%;
+  background:#d9eeee;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+}
+
+.player h3{
+  margin-top:9px;
+  font-size:15px;
+}
+
+.player p{
+  color:#777;
+  font-size:12px;
+  margin-top:5px;
+}
+
+.media{
+  min-width:240px;
+  height:140px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#263238,#607d8b);
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:14px;
+  position:relative;
+  overflow:hidden;
+}
+
+.play{
+  position:absolute;
+  top:45px;
+  left:50%;
+  transform:translateX(-50%);
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:white;
+  color:#075e54;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+}
+
+.media h3{
+  font-size:14px;
+}
+
+.news{
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:10px;
+  box-shadow:0 2px 7px #0000000d;
+}
+
+.news h3{
+  font-size:15px;
+  margin-bottom:6px;
+}
+
+.news p{
+  color:#777;
+  font-size:12px;
+}
+
+.bottom{
+  margin-top:30px;
+  background:#17202a;
+  color:white;
+  padding:30px 18px;
+  text-align:center;
+}
+
+.bottom h2{
+  margin-bottom:8px;
+}
+
+.bottom p{
+  color:#aaa;
+  font-size:12px;
+}
+
+@media(min-width:700px){
+  .container{
+    padding:25px;
+  }
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    overflow:visible;
+  }
+
+  .card{
+    min-width:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="top">
+    <div class="logo">Kunchiti<span>Buzz</span> 🏏</div>
+    <div class="menu">☰</div>
+  </div>
+
+  <div class="search">
+    🔍 Search matches, teams, players...
+  </div>
+</header>
+
+<nav class="nav">
+  <div>HOME</div>
+  <div>LIVE</div>
+  <div>MATCHES</div>
+  <div>TOURNAMENTS</div>
+  <div>TEAMS</div>
+  <div>PLAYERS</div>
+  <div>VIDEOS</div>
+  <div>NEWS</div>
+</nav>
+
+<main class="container">
+
+<section>
+  <div class="section-title">
+    <h2>🔴 Live Matches</h2>
+    <a>VIEW ALL</a>
+  </div>
+
+  <div class="live-card">
+    <div class="live-label">● LIVE NOW</div>
+    <div class="match-title">
+      MAHROOM SHEYAQ KNOCK OUT CRICKET TOURNAMENT
+    </div>
+
+    <div class="teams">
+
+      <div class="team">
+        <div class="team-logo">🏏</div>
+        <div class="team-name">Team A</div>
+        <div class="score">85/3</div>
+        <small>10.2 overs</small>
+      </div>
+
+      <div class="vs">VS</div>
+
+      <div class="team">
+        <div class="team-logo">🏏</div>
+        <div class="team-name">Team B</div>
+        <div class="score">Yet to bat</div>
+      </div>
+
+    </div>
+
+    <div class="status">
+      Live Score • Dasht Kunchiti Cricket Ground
+    </div>
+  </div>
+</section>
+
+
+<section>
+  <div class="section-title">
+    <h2>🏏 Recent Matches</h2>
+    <a>VIEW ALL</a>
+  </div>
+
+  <div class="cards">
+
+    <div class="card">
+      <small>17 AUG • KNOCKOUT</small>
+      <h3>Shaheed Mehboob Jan vs Shaheed Yar Jan</h3>
+      <div class="result">Match completed</div>
+    </div>
+
+    <div class="card">
+      <small>16 AUG • LEAGUE</small>
+      <h3>Kunchiti Stars vs Dasht XI</h3>
+      <div class="result">Team A won</div>
+    </div>
+
+    <div class="card">
+      <small>15 AUG • LEAGUE</small>
+      <h3>Dasht Warriors vs Kunchiti Club</h3>
+      <div class="result">Team B won</div>
+    </div>
+
+  </div>
+</section>
+
+
+<section>
+  <div class="section-title">
+    <h2>🏆 Featured Tournament</h2>
+  </div>
+
+  <div class="tournament">
+    <h2>MAHROOM SHEYAQ KNOCK OUT</h2>
+    <p>Cricket Tournament • Dasht Kunchiti</p>
+    <p style="margin-top:7px;">
+      Follow matches, teams, players, results and points table.
+    </p>
+
+    <div class="button">EXPLORE TOURNAMENT</div>
+  </div>
+</section>
+
+
+<section>
+  <div class="section-title">
+    <h2>📊 Points Table</h2>
+    <a>FULL TABLE</a>
+  </div>
+
+  <div class="points">
+    <table>
+      <tr>
+        <th>#</th>
+        <th>TEAM</th>
+        <th>P</th>
+        <th>W</th>
+        <th>L</th>
+        <th>PTS</th>
+      </tr>
+
+      <tr>
+        <td>1</td>
+        <td>Team A</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>6</td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td>Team B</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>4</td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td>Team C</td>
+        <td>3</td>
+        <td>1</td>
+        <td>2</td>
+        <td>2</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+
+<section>
+  <div class="section-title">
+    <h2>⭐ Featured Players</h2>
+    <a>ALL PLAYERS</a>
+  </div>
+
+  <div class="cards">
+
+    <div class="player">
+      <div class="avatar">👤</div>
+      <h3>Player Name</h3>
+      <p>All-Rounder</p>
+      <p>Matches: 12 • Runs: 340</p>
+    </div>
+
+    <div class="player">
+      <div class="avatar">👤</div>
+      <h3>Player Name</h3>
+      <p>Batsman</p>
+      <p>Matches: 10 • Runs: 410</p>
+    </div>
+
+    <div class="player">
+      <div class="avatar">👤</div>
+      <h3>Player Name</h3>
+      <p>Bowler</p>
+      <p>Matches: 11 • Wickets: 18</p>
+    </div>
+
+  </div>
+</section>
+
+
+<section>
+  <div class="section-title">
+    <h2>🎬 Videos & Highlights</h2>
+    <a>SEE ALL</a>
+  </div>
+
+  <div class="cards">
+
+    <div class="media">
+      <div class="play">▶</div>
+      <h3>Winning Moments</h3>
+    </div>
+
+    <div class="media">
+      <div class="play">▶</div>
+      <h3>Best Batting Performance</h3>
+    </div>
+
+    <div class="media">
+      <div class="play">▶</div>
+      <h3>Match Highlights</h3>
+    </div>
+
+  </div>
+</section>
+
+
+<section>
+  <div class="section-title">
+    <h2>📰 Latest Cricket News</h2>
+    <a>MORE NEWS</a>
+  </div>
+
+  <div class="news">
+    <h3>Tournament action continues in Dasht Kunchiti</h3>
+    <p>Latest match updates, results and tournament information.</p>
+  </div>
+
+  <div class="news">
+    <h3>Local teams prepare for the next big match</h3>
+    <p>Follow KunchitiBuzz for live cricket updates.</p>
+  </div>
+
+  <div class="news">
+    <h3>Player performances and match statistics</h3>
+    <p>Explore player records and tournament history.</p>
+  </div>
+</section>
+
+</main>
+
+
+<footer class="bottom">
+  <h2>KunchitiBuzz 🏏</h2>
+  <p>Your local cricket platform</p>
+  <p style="margin-top:12px;">
+    Live Scores • Tournaments • Teams • Players • Videos
+  </p>
+</footer>
+
+</body>
+</html>
