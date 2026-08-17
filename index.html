@@ -2,760 +2,1300 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <title>KunchitiBuzz - Cricket</title>
 
 <style>
 *{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
 body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f3f5f7;
-    color:#17202a;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f3f5f7;
+  color:#17202a;
 }
 
-button{
-    font-family:inherit;
-    cursor:pointer;
+body.lock{
+  overflow:hidden;
 }
 
+/* HEADER */
 .header{
-    background:#075e54;
-    color:white;
-    padding:18px 25px 25px;
+  background:#075e54;
+  color:white;
+  padding:18px 16px;
+  position:sticky;
+  top:0;
+  z-index:100;
 }
 
-.header-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .logo{
-    font-size:30px;
-    font-weight:bold;
+  font-size:25px;
+  font-weight:800;
 }
 
 .logo span{
-    color:#ffd43b;
+  color:#ffd54f;
 }
 
-.menu-btn{
-    border:0;
-    background:none;
-    color:white;
-    font-size:32px;
+.menu{
+  font-size:27px;
+  cursor:pointer;
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+}
+
+.menu:active{
+  background:rgba(255,255,255,.15);
 }
 
 .search{
-    margin-top:18px;
+  margin-top:15px;
+  background:white;
+  border-radius:25px;
+  padding:11px 15px;
 }
 
 .search input{
-    width:100%;
-    border:0;
-    outline:none;
-    border-radius:30px;
-    padding:16px 22px;
-    font-size:17px;
+  width:100%;
+  border:0;
+  outline:0;
+  background:transparent;
+  font-size:16px;
 }
 
+.mobile-menu{
+  display:none;
+  position:absolute;
+  right:12px;
+  top:72px;
+  width:220px;
+  background:white;
+  border-radius:12px;
+  box-shadow:0 8px 30px rgba(0,0,0,.22);
+  overflow:hidden;
+  z-index:200;
+}
+
+.mobile-menu.open{
+  display:block;
+}
+
+.mobile-menu button{
+  width:100%;
+  border:0;
+  background:white;
+  padding:14px 16px;
+  text-align:left;
+  font-weight:bold;
+  color:#17202a;
+  cursor:pointer;
+}
+
+.mobile-menu button:hover{
+  background:#e8f5f3;
+  color:#075e54;
+}
+
+/* NAV */
 .nav{
-    background:white;
-    display:flex;
-    gap:35px;
-    padding:18px 25px;
-    overflow-x:auto;
-    white-space:nowrap;
-    border-bottom:1px solid #ddd;
+  background:white;
+  display:flex;
+  overflow-x:auto;
+  border-bottom:1px solid #ddd;
 }
 
 .nav button{
-    border:0;
-    background:none;
-    font-size:17px;
-    font-weight:bold;
-    color:#17202a;
+  border:0;
+  background:white;
+  padding:15px 17px;
+  white-space:nowrap;
+  font-size:14px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-.nav button:hover{
-    color:#075e54;
+.nav button.active{
+  color:#075e54;
+  border-bottom:3px solid #075e54;
 }
 
+/* MAIN */
 .container{
-    max-width:1100px;
-    margin:auto;
-    padding:30px 20px;
+  max-width:1000px;
+  margin:auto;
+  padding:15px;
+}
+
+.section{
+  margin-bottom:25px;
 }
 
 .section-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:22px 0 12px;
 }
 
 .section-title h2{
-    font-size:27px;
+  font-size:20px;
 }
 
-.view-all{
-    color:#087f6e;
-    font-weight:bold;
+.section-title a{
+  color:#087f70;
+  font-size:13px;
+  font-weight:bold;
 }
 
+/* LIVE MATCH */
 .live-card{
-    background:white;
-    border-radius:18px;
-    padding:25px;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
+  background:white;
+  border-radius:12px;
+  padding:17px;
+  box-shadow:0 2px 8px #00000012;
 }
 
 .live-label{
-    color:#e53935;
-    font-size:18px;
-    font-weight:bold;
-    margin-bottom:25px;
+  color:#e53935;
+  font-weight:bold;
+  font-size:13px;
+  margin-bottom:12px;
 }
 
 .match-title{
-    text-align:center;
-    color:#777;
-    font-size:17px;
-    margin-bottom:25px;
+  color:#777;
+  font-size:13px;
+  margin-bottom:15px;
 }
 
 .teams{
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    text-align:center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .team{
-    width:40%;
+  text-align:center;
+  width:38%;
 }
 
-.team-icon{
-    width:90px;
-    height:90px;
-    border-radius:50%;
-    background:#eaf7f5;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:42px;
-    margin:auto;
+.team-logo{
+  width:55px;
+  height:55px;
+  margin:auto;
+  border-radius:50%;
+  background:#e8f5f3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:25px;
 }
 
-.team h3{
-    margin-top:12px;
-    font-size:23px;
+.team-name{
+  margin-top:8px;
+  font-weight:bold;
 }
 
 .score{
-    font-size:30px;
-    font-weight:bold;
-    margin-top:5px;
-}
-
-.overs{
-    margin-top:5px;
-    color:#555;
+  margin-top:5px;
+  font-size:20px;
+  font-weight:bold;
 }
 
 .vs{
-    font-size:24px;
-    font-weight:bold;
-    color:#888;
-}
-
-.live-ground{
-    margin-top:25px;
-    background:#e8f6e9;
-    color:#27833d;
-    padding:14px;
-    border-radius:12px;
-    text-align:center;
-    font-weight:bold;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:20px;
-}
-
-.card{
-    background:white;
-    padding:22px;
-    border-radius:16px;
-    box-shadow:0 4px 15px rgba(0,0,0,.07);
-}
-
-.card h3{
-    font-size:20px;
-    margin:10px 0;
-}
-
-.card p{
-    color:#666;
+  font-weight:bold;
+  color:#999;
 }
 
 .status{
-    color:#087f6e;
-    font-weight:bold;
-    margin-top:12px;
+  text-align:center;
+  margin-top:17px;
+  padding:10px;
+  border-radius:8px;
+  background:#e8f5e9;
+  color:#218838;
+  font-size:13px;
+  font-weight:bold;
 }
 
+/* CARDS */
+.cards{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+}
+
+.card{
+  min-width:230px;
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  box-shadow:0 2px 8px #00000010;
+}
+
+.card small{
+  color:#888;
+}
+
+.card h3{
+  margin:10px 0;
+  font-size:16px;
+}
+
+.result{
+  color:#087f70;
+  font-size:13px;
+  font-weight:bold;
+}
+
+/* TOURNAMENT */
 .tournament{
-    margin-top:30px;
-    background:#075e54;
-    color:white;
-    border-radius:20px;
-    padding:30px;
+  background:linear-gradient(135deg,#075e54,#087f70);
+  color:white;
+  border-radius:14px;
+  padding:20px;
 }
 
 .tournament h2{
-    font-size:28px;
-    margin-bottom:10px;
+  margin-bottom:8px;
 }
 
 .tournament p{
-    margin-top:8px;
-    color:#d9efec;
+  font-size:13px;
+  opacity:.9;
 }
 
-.login-btn{
-    position:fixed;
-    right:20px;
-    bottom:20px;
-    background:#075e54;
-    color:white;
-    border:0;
-    padding:15px 22px;
-    border-radius:30px;
-    font-weight:bold;
-    box-shadow:0 5px 20px rgba(0,0,0,.25);
-    z-index:1000;
+.button{
+  display:inline-block;
+  margin-top:15px;
+  padding:10px 16px;
+  background:#ffd54f;
+  color:#222;
+  border-radius:7px;
+  font-weight:bold;
+  font-size:13px;
+  cursor:pointer;
 }
 
-.login-overlay{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.65);
-    z-index:9999;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
+/* TABLE */
+.points{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 2px 8px #00000010;
 }
 
-.login-box{
-    width:100%;
-    max-width:430px;
-    background:white;
-    border-radius:20px;
-    padding:28px;
-    box-shadow:0 10px 40px rgba(0,0,0,.35);
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:13px;
 }
 
-.login-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+th,td{
+  padding:12px 9px;
+  text-align:center;
+  border-bottom:1px solid #eee;
 }
 
-.login-header h2{
-    color:#075e54;
+th{
+  background:#f5f7f8;
+  color:#555;
 }
 
-.close-login{
-    font-size:30px;
-    border:0;
-    background:none;
+/* PLAYERS */
+.player{
+  min-width:160px;
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  text-align:center;
+  box-shadow:0 2px 8px #00000010;
 }
 
-.login-box input{
-    width:100%;
-    padding:15px;
-    margin-top:15px;
-    border:1px solid #ccc;
-    border-radius:10px;
-    font-size:16px;
-    outline:none;
+.avatar{
+  width:65px;
+  height:65px;
+  margin:auto;
+  border-radius:50%;
+  background:#d9eeee;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
 }
 
-.login-submit{
-    width:100%;
-    padding:15px;
-    margin-top:15px;
-    background:#075e54;
-    color:white;
-    border:0;
-    border-radius:10px;
-    font-size:17px;
-    font-weight:bold;
+.player h3{
+  margin-top:9px;
+  font-size:15px;
 }
 
-.login-message{
-    margin-top:15px;
-    font-weight:bold;
+.player p{
+  color:#777;
+  font-size:12px;
+  margin-top:5px;
 }
 
-.demo{
-    margin-top:15px;
-    color:#777;
+/* VIDEOS */
+.media{
+  min-width:240px;
+  height:140px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#263238,#607d8b);
+  color:white;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:14px;
+  position:relative;
 }
 
-.admin-panel{
-    display:none;
-    background:#eef2f3;
-    min-height:100vh;
-    padding-bottom:50px;
+.play{
+  position:absolute;
+  top:45px;
+  left:50%;
+  transform:translateX(-50%);
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:white;
+  color:#075e54;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
-.admin-header{
-    background:#075e54;
-    color:white;
-    padding:22px;
+/* NEWS */
+.news{
+  background:white;
+  border-radius:12px;
+  padding:15px;
+  margin-bottom:10px;
+  box-shadow:0 2px 7px #0000000d;
 }
 
-.admin-header-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.news h3{
+  font-size:15px;
+  margin-bottom:6px;
 }
 
-.admin-header h1{
-    font-size:26px;
+.news p{
+  color:#777;
+  font-size:12px;
 }
 
-.logout{
-    background:#e53935;
-    color:white;
-    border:0;
-    padding:10px 16px;
-    border-radius:8px;
-    font-weight:bold;
+/* FOOTER */
+.bottom{
+  margin-top:30px;
+  background:#17202a;
+  color:white;
+  padding:30px 18px;
+  text-align:center;
 }
 
-.admin-container{
-    max-width:1100px;
-    margin:auto;
-    padding:25px 20px;
+.bottom h2{
+  margin-bottom:8px;
 }
 
-.welcome{
-    background:white;
-    padding:22px;
-    border-radius:15px;
-    margin-bottom:25px;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
-}
-
-.admin-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:18px;
-}
-
-.admin-card{
-    background:white;
-    padding:25px;
-    border-radius:16px;
-    box-shadow:0 3px 12px rgba(0,0,0,.07);
-    border-left:5px solid #075e54;
-}
-
-.admin-card h3{
-    color:#075e54;
-    margin-bottom:8px;
-}
-
-.admin-card p{
-    color:#666;
-    margin-bottom:15px;
-}
-
-.admin-card button{
-    background:#075e54;
-    color:white;
-    border:0;
-    padding:10px 15px;
-    border-radius:8px;
-}
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-    margin-bottom:25px;
-}
-
-.stat{
-    background:white;
-    padding:20px;
-    text-align:center;
-    border-radius:14px;
-}
-
-.stat strong{
-    display:block;
-    font-size:28px;
-    color:#075e54;
-}
-
-.footer{
-    background:#123;
-    color:white;
-    text-align:center;
-    padding:35px 20px;
-    margin-top:40px;
-}
-
-.footer h2{
-    margin-bottom:10px;
+.bottom p{
+  color:#aaa;
+  font-size:12px;
+  margin-top:6px;
 }
 
 .developer{
-    margin-top:18px;
-    color:#ffd43b;
-    font-weight:bold;
-    font-size:16px;
+  margin-top:18px;
+  color:#ffd54f !important;
+  font-size:14px !important;
+  font-weight:bold;
 }
 
-.hidden{
-    display:none !important;
+/* LOGIN */
+.login-btn{
+  margin:12px 18px 0 auto;
+  display:block;
+  background:white;
+  color:#075e54;
+  border:0;
+  padding:10px 18px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
-@media(max-width:700px){
+.login-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.70);
+  z-index:9999;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+}
 
-    .logo{
-        font-size:25px;
-    }
+.login-overlay.open{
+  display:flex;
+}
 
-    .nav{
-        gap:25px;
-        padding:15px;
-    }
+.login-box{
+  width:92%;
+  max-width:400px;
+  background:white;
+  padding:25px;
+  border-radius:16px;
+  box-shadow:0 10px 40px rgba(0,0,0,.4);
+}
 
-    .container{
-        padding:25px 15px;
-    }
+.login-box h2{
+  color:#075e54;
+  margin-bottom:15px;
+}
 
-    .teams{
-        gap:5px;
-    }
+.login-close{
+  float:right;
+  font-size:28px;
+  cursor:pointer;
+}
 
-    .team{
-        width:42%;
-    }
+.login-box input{
+  width:100%;
+  padding:14px;
+  margin:8px 0;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:16px;
+}
 
-    .team-icon{
-        width:70px;
-        height:70px;
-        font-size:32px;
-    }
+.login-submit{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  background:#075e54;
+  color:white;
+  border:0;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+  font-size:15px;
+}
 
-    .team h3{
-        font-size:19px;
-    }
+#loginMessage{
+  margin-top:12px;
+  font-weight:bold;
+  min-height:20px;
+}
 
-    .score{
-        font-size:25px;
-    }
+/* ADMIN PANEL */
+.admin-overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#f3f5f7;
+  z-index:9000;
+  overflow-y:auto;
+}
 
-    .cards{
-        grid-template-columns:1fr;
-    }
+.admin-overlay.open{
+  display:block;
+}
 
-    .admin-grid{
-        grid-template-columns:1fr;
-    }
+.admin-header{
+  background:#075e54;
+  color:white;
+  padding:18px 16px;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
 
-    .stats{
-        grid-template-columns:repeat(2,1fr);
-    }
+.admin-header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.admin-header h2{
+  font-size:21px;
+}
+
+.admin-logout{
+  background:#e53935;
+  color:white;
+  border:0;
+  padding:9px 14px;
+  border-radius:7px;
+  font-weight:bold;
+}
+
+.admin-container{
+  max-width:800px;
+  margin:auto;
+  padding:18px;
+}
+
+.admin-card{
+  background:white;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:0 2px 8px #00000012;
+}
+
+.admin-card h3{
+  color:#075e54;
+  margin-bottom:15px;
+}
+
+.admin-field{
+  margin-bottom:13px;
+}
+
+.admin-field label{
+  display:block;
+  font-weight:bold;
+  font-size:13px;
+  margin-bottom:5px;
+}
+
+.admin-field input{
+  width:100%;
+  padding:12px;
+  border:1px solid #ccc;
+  border-radius:8px;
+  font-size:15px;
+}
+
+.save-btn{
+  width:100%;
+  padding:14px;
+  background:#075e54;
+  color:white;
+  border:0;
+  border-radius:8px;
+  font-weight:bold;
+  font-size:15px;
+}
+
+.admin-note{
+  background:#fff8e1;
+  border-left:4px solid #ffd54f;
+  padding:12px;
+  font-size:13px;
+  margin-top:10px;
+}
+
+/* TOAST */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  background:#17202a;
+  color:white;
+  padding:12px 17px;
+  border-radius:10px;
+  font-size:13px;
+  font-weight:bold;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:10001;
+  max-width:90%;
+  text-align:center;
+}
+
+.toast.show{
+  opacity:1;
+}
+
+/* DESKTOP */
+@media(min-width:700px){
+
+  .container{
+    padding:25px;
+  }
+
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    overflow:visible;
+  }
+
+  .card{
+    min-width:0;
+  }
+
+  .nav button{
+    padding:15px 20px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= MAIN WEBSITE ================= -->
-
-<div id="mainWebsite">
+<!-- ================= HEADER ================= -->
 
 <header class="header">
 
-    <div class="header-top">
+  <div class="top">
 
-        <div class="logo">
-            Kunchiti<span>Buzz</span> 🏏
-        </div>
-
-        <button class="menu-btn" onclick="alert('Menu coming soon')">
-            ☰
-        </button>
-
+    <div class="logo">
+      Kunchiti<span>Buzz</span> 🏏
     </div>
 
-    <div class="search">
-        <input
-            type="text"
-            placeholder="🔍 Search matches, teams, players..."
-        >
+    <div class="menu" id="menuButton">
+      ☰
     </div>
+
+  </div>
+
+  <div class="search">
+    <input
+      id="searchInput"
+      type="search"
+      placeholder="🔍 Search matches, teams, players..."
+      autocomplete="off">
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+
+    <button data-target="home">🏠 Home</button>
+    <button data-target="live">🔴 Live Matches</button>
+    <button data-target="matches">🏏 Matches</button>
+    <button data-target="tournaments">🏆 Tournaments</button>
+    <button data-target="teams">👥 Teams</button>
+    <button data-target="players">⭐ Players</button>
+    <button data-target="videos">🎬 Videos</button>
+    <button data-target="news">📰 News</button>
+
+    <button id="mobileLoginButton">
+      🔐 Admin Login
+    </button>
+
+  </div>
 
 </header>
 
-<nav class="nav">
 
-    <button>HOME</button>
-    <button>LIVE</button>
-    <button>MATCHES</button>
-    <button>TOURNAMENTS</button>
-    <button>TEAMS</button>
-    <button>PLAYERS</button>
+<!-- ================= NAVIGATION ================= -->
+
+<nav class="nav" id="mainNav">
+
+  <button class="active" data-target="home">
+    HOME
+  </button>
+
+  <button data-target="live">
+    LIVE
+  </button>
+
+  <button data-target="matches">
+    MATCHES
+  </button>
+
+  <button data-target="tournaments">
+    TOURNAMENTS
+  </button>
+
+  <button data-target="teams">
+    TEAMS
+  </button>
+
+  <button data-target="players">
+    PLAYERS
+  </button>
+
+  <button data-target="videos">
+    VIDEOS
+  </button>
+
+  <button data-target="news">
+    NEWS
+  </button>
 
 </nav>
 
 
-<main class="container">
+<!-- ================= MAIN WEBSITE ================= -->
 
-    <!-- LIVE MATCH -->
+<main class="container" id="website">
 
-    <div class="section-title">
-        <h2>🔴 Live Matches</h2>
-        <span class="view-all">VIEW ALL</span>
+<!-- HOME -->
+
+<section id="home" class="section">
+
+  <div class="section-title">
+    <h2>🏠 KunchitiBuzz</h2>
+  </div>
+
+  <div class="live-card">
+
+    <h2>
+      Welcome to KunchitiBuzz 🏏
+    </h2>
+
+    <p style="margin-top:8px;color:#777;">
+      Live cricket scores, matches, tournaments,
+      teams, players and cricket updates.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- LOGIN BUTTON -->
+
+<button
+  type="button"
+  class="login-btn"
+  id="loginButton">
+
+  🔐 ADMIN LOGIN
+
+</button>
+
+
+<!-- LIVE -->
+
+<section id="live" class="section">
+
+  <div class="section-title">
+
+    <h2>🔴 Live Matches</h2>
+
+    <a href="#" data-target="live">
+      VIEW ALL
+    </a>
+
+  </div>
+
+
+  <div
+    class="live-card"
+    data-search="live matches cricket mahroom sheyaq team a team b">
+
+    <div class="live-label">
+      ● LIVE NOW
     </div>
 
-    <div class="live-card">
+    <div
+      class="match-title"
+      id="websiteMatchTitle">
 
-        <div class="live-label">
-            🔴 LIVE NOW
-        </div>
-
-        <div class="match-title">
-            MAHROOM SHEYAQ KNOCK OUT CRICKET TOURNAMENT
-        </div>
-
-        <div class="teams">
-
-            <div class="team">
-
-                <div class="team-icon">
-                    🏏
-                </div>
-
-                <h3>Team A</h3>
-
-                <div class="score">
-                    85/3
-                </div>
-
-                <div class="overs">
-                    10.2 overs
-                </div>
-
-            </div>
-
-            <div class="vs">
-                VS
-            </div>
-
-            <div class="team">
-
-                <div class="team-icon">
-                    🏏
-                </div>
-
-                <h3>Team B</h3>
-
-                <div class="score">
-                    Yet to bat
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="live-ground">
-            Live Score • Dasht Kunchiti Cricket Ground
-        </div>
-
-    </div>
-
-
-    <!-- RECENT MATCHES -->
-
-    <div class="section-title" style="margin-top:40px;">
-        <h2>🏏 Recent Matches</h2>
-        <span class="view-all">VIEW ALL</span>
-    </div>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <small>
-                17 AUG • KNOCKOUT
-            </small>
-
-            <h3>
-                Shaheed Mehboob Jan vs Shaheed Yar Jan
-            </h3>
-
-            <div class="status">
-                Match completed
-            </div>
-
-        </div>
-
-        <div class="card">
-
-            <small>
-                16 AUG • LEAGUE
-            </small>
-
-            <h3>
-                Kunchiti Stars vs Team B
-            </h3>
-
-            <div class="status">
-                Team A won
-            </div>
-
-        </div>
+      MAHROOM SHEYAQ KNOCK OUT CRICKET TOURNAMENT
 
     </div>
 
 
-    <!-- FEATURED TOURNAMENT -->
+    <div class="teams">
 
-    <div class="section-title" style="margin-top:40px;">
-        <h2>🏆 Featured Tournament</h2>
+      <div class="team">
+
+        <div class="team-logo">
+          🏏
+        </div>
+
+        <div
+          class="team-name"
+          id="websiteTeamA">
+
+          Team A
+
+        </div>
+
+        <div
+          class="score"
+          id="websiteScoreA">
+
+          85/3
+
+        </div>
+
+        <small id="websiteOvers">
+          10.2 overs
+        </small>
+
+      </div>
+
+
+      <div class="vs">
+        VS
+      </div>
+
+
+      <div class="team">
+
+        <div class="team-logo">
+          🏏
+        </div>
+
+        <div
+          class="team-name"
+          id="websiteTeamB">
+
+          Team B
+
+        </div>
+
+        <div class="score">
+          Yet to bat
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="tournament">
 
-        <h2>
-            MAHROOM SHEYAQ KNOCK OUT
-        </h2>
+    <div class="status">
 
-        <p>
-            Cricket Tournament
-        </p>
-
-        <p>
-            Dasht Kunchiti Cricket Ground
-        </p>
-
-        <p>
-            Follow matches, teams, players, results and points table.
-        </p>
+      Live Score • Dasht Kunchiti Cricket Ground
 
     </div>
+
+  </div>
+
+</section>
+
+
+<!-- MATCHES -->
+
+<section id="matches" class="section">
+
+  <div class="section-title">
+
+    <h2>🏏 Recent Matches</h2>
+
+    <a href="#" data-target="matches">
+      VIEW ALL
+    </a>
+
+  </div>
+
+
+  <div class="cards">
+
+    <div class="card">
+
+      <small>
+        17 AUG • KNOCKOUT
+      </small>
+
+      <h3>
+        Shaheed Mehboob Jan vs Shaheed Yar Jan
+      </h3>
+
+      <div class="result">
+        Match completed
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <small>
+        16 AUG • LEAGUE
+      </small>
+
+      <h3>
+        Kunchiti Stars vs Dasht XI
+      </h3>
+
+      <div class="result">
+        Team A won
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <small>
+        15 AUG • LEAGUE
+      </small>
+
+      <h3>
+        Dasht Warriors vs Kunchiti Club
+      </h3>
+
+      <div class="result">
+        Team B won
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TOURNAMENT -->
+
+<section id="tournaments" class="section">
+
+  <div class="section-title">
+
+    <h2>
+      🏆 Featured Tournament
+    </h2>
+
+  </div>
+
+
+  <div class="tournament">
+
+    <h2>
+      MAHROOM SHEYAQ KNOCK OUT
+    </h2>
+
+    <p>
+      Cricket Tournament • Dasht Kunchiti
+    </p>
+
+    <p style="margin-top:7px;">
+      Follow matches, teams, players,
+      results and points table.
+    </p>
+
+    <div class="button">
+      EXPLORE TOURNAMENT
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- TEAMS -->
+
+<section id="teams" class="section">
+
+  <div class="section-title">
+
+    <h2>
+      📊 Points Table
+    </h2>
+
+  </div>
+
+
+  <div class="points">
+
+    <table>
+
+      <tr>
+        <th>#</th>
+        <th>TEAM</th>
+        <th>P</th>
+        <th>W</th>
+        <th>L</th>
+        <th>PTS</th>
+      </tr>
+
+      <tr>
+        <td>1</td>
+        <td>Team A</td>
+        <td>3</td>
+        <td>3</td>
+        <td>0</td>
+        <td>6</td>
+      </tr>
+
+      <tr>
+        <td>2</td>
+        <td>Team B</td>
+        <td>3</td>
+        <td>2</td>
+        <td>1</td>
+        <td>4</td>
+      </tr>
+
+      <tr>
+        <td>3</td>
+        <td>Team C</td>
+        <td>3</td>
+        <td>1</td>
+        <td>2</td>
+        <td>2</td>
+      </tr>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- PLAYERS -->
+
+<section id="players" class="section">
+
+  <div class="section-title">
+
+    <h2>
+      ⭐ Featured Players
+    </h2>
+
+  </div>
+
+
+  <div class="cards">
+
+    <div class="player">
+
+      <div class="avatar">
+        👤
+      </div>
+
+      <h3>
+        Player Name
+      </h3>
+
+      <p>
+        All-Rounder
+      </p>
+
+      <p>
+        Matches: 12 • Runs: 340
+      </p>
+
+    </div>
+
+
+    <div class="player">
+
+      <div class="avatar">
+        👤
+      </div>
+
+      <h3>
+        Player Name
+      </h3>
+
+      <p>
+        Batsman
+      </p>
+
+      <p>
+        Matches: 10 • Runs: 410
+      </p>
+
+    </div>
+
+
+    <div class="player">
+
+      <div class="avatar">
+        👤
+      </div>
+
+      <h3>
+        Player Name
+      </h3>
+
+      <p>
+        Bowler
+      </p>
+
+      <p>
+        Matches: 11 • Wickets: 18
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- VIDEOS -->
+
+<section id="videos" class="section">
+
+  <div class="section-title">
+
+    <h2>
+      🎬 Videos & Highlights
+    </h2>
+
+  </div>
+
+
+  <div class="cards">
+
+    <div class="media">
+      <div class="play">▶</div>
+      <h3>Winning Moments</h3>
+    </div>
+
+    <div class="media">
+      <div class="play">▶</div>
+      <h3>Best Batting Performance</h3>
+    </div>
+
+    <div class="media">
+      <div class="play">▶</div>
+      <h3>Match Highlights</h3>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- NEWS -->
+
+<section id="news" class="section">
+
+  <div class="section-title">
+
+    <h2>
+      📰 Latest Cricket News
+    </h2>
+
+  </div>
+
+
+  <div class="news">
+
+    <h3>
+      Tournament action continues in Dasht Kunchiti
+    </h3>
+
+    <p>
+      Latest match updates, results and tournament information.
+    </p>
+
+  </div>
+
+
+  <div class="news">
+
+    <h3>
+      Local teams prepare for the next big match
+    </h3>
+
+    <p>
+      Follow KunchitiBuzz for live cricket updates.
+    </p>
+
+  </div>
+
+
+  <div class="news">
+
+    <h3>
+      Player performances and match statistics
+    </h3>
+
+    <p>
+      Explore player records and tournament history.
+    </p>
+
+  </div>
+
+</section>
 
 </main>
 
 
-<footer class="footer">
+<!-- ================= FOOTER ================= -->
 
-    <h2>
-        KunchitiBuzz 🏏
-    </h2>
+<footer class="bottom">
 
-    <p>
-        Your local cricket platform
-    </p>
+  <h2>
+    KunchitiBuzz 🏏
+  </h2>
 
-    <p style="margin-top:10px;">
-        Live Scores • Tournaments • Teams • Players • Matches
-    </p>
+  <p>
+    Your local cricket platform
+  </p>
 
-    <div class="developer">
-        Website Developed by Cherag Dashti
-    </div>
+  <p>
+    Live Scores • Tournaments • Teams • Players • Videos
+  </p>
+
+  <p class="developer">
+    Website Developed by Cherag Dashti
+  </p>
 
 </footer>
-
-</div>
-
-
-<!-- ================= LOGIN BUTTON ================= -->
-
-<button
-    class="login-btn"
-    onclick="openLogin()"
-    id="loginOpenButton"
->
-    ADMIN LOGIN
-</button>
 
 
 <!-- ================= LOGIN POPUP ================= -->
 
 <div
-    class="login-overlay"
-    id="loginOverlay"
->
+  class="login-overlay"
+  id="loginOverlay">
 
-    <div class="login-box">
+  <div class="login-box">
 
-        <div class="login-header">
+    <span
+      class="login-close"
+      id="loginClose">
 
-            <h2>
-                KunchitiBuzz Login
-            </h2>
+      ×
 
-            <button
-                class="close-login"
-                onclick="closeLogin()"
-            >
-                ×
-            </button>
-
-        </div>
+    </span>
 
 
-        <input
-            type="text"
-            id="loginUsername"
-            placeholder="Username"
-            autocomplete="username"
-        >
+    <h2>
+      KunchitiBuzz Admin Login
+    </h2>
 
-        <input
-            type="password"
-            id="loginPassword"
-            placeholder="Password"
-            autocomplete="current-password"
-        >
 
-        <button
-            class="login-submit"
-            onclick="doLogin()"
-        >
-            LOGIN
-        </button>
+    <input
+      type="text"
+      id="loginUsername"
+      placeholder="Username"
+      autocomplete="username">
 
-        <div
-            class="login-message"
-            id="loginMessage"
-        ></div>
 
-        <div class="demo">
-            Demo login: <b>admin / 1234</b>
-        </div>
+    <input
+      type="password"
+      id="loginPassword"
+      placeholder="Password"
+      autocomplete="current-password">
+
+
+    <button
+      type="button"
+      class="login-submit"
+      id="loginSubmit">
+
+      LOGIN
+
+    </button>
+
+
+    <div id="loginMessage"></div>
+
+
+    <div
+      style="margin-top:10px;font-size:12px;color:#777;">
+
+      Demo login: admin / 1234
 
     </div>
+
+  </div>
 
 </div>
 
@@ -763,402 +1303,873 @@ button{
 <!-- ================= ADMIN PANEL ================= -->
 
 <div
-    class="admin-panel"
-    id="adminPanel"
->
+  class="admin-overlay"
+  id="adminPanel">
 
-    <header class="admin-header">
+  <div class="admin-header">
 
-        <div class="admin-header-top">
+    <div class="admin-header-top">
 
-            <h1>
-                🛠 KunchitiBuzz Admin Panel
-            </h1>
+      <h2>
+        🛠 KunchitiBuzz Admin Panel
+      </h2>
 
-            <button
-                class="logout"
-                onclick="logoutAdmin()"
-            >
-                LOGOUT
-            </button>
+      <button
+        class="admin-logout"
+        id="logoutButton">
 
-        </div>
+        LOGOUT
 
-    </header>
+      </button>
 
+    </div>
 
-    <div class="admin-container">
+  </div>
 
-        <div class="welcome">
 
-            <h2>
-                Welcome, Admin 👋
-            </h2>
+  <div class="admin-container">
 
-            <p style="margin-top:8px;color:#666;">
-                Manage your KunchitiBuzz cricket website from here.
-            </p>
 
-        </div>
+    <div class="admin-card">
 
+      <h3>
+        📊 Live Match Control
+      </h3>
 
-        <!-- STATISTICS -->
 
-        <div class="stats">
+      <div class="admin-field">
 
-            <div class="stat">
-                <strong>0</strong>
-                Teams
-            </div>
+        <label>
+          Tournament / Match Title
+        </label>
 
-            <div class="stat">
-                <strong>0</strong>
-                Players
-            </div>
+        <input
+          id="adminMatchTitle"
+          type="text"
+          value="MAHROOM SHEYAQ KNOCK OUT CRICKET TOURNAMENT">
 
-            <div class="stat">
-                <strong>0</strong>
-                Matches
-            </div>
+      </div>
 
-            <div class="stat">
-                <strong>1</strong>
-                Tournament
-            </div>
 
-        </div>
+      <div class="admin-field">
 
+        <label>
+          Team A
+        </label>
 
-        <!-- ADMIN OPTIONS -->
+        <input
+          id="adminTeamA"
+          type="text"
+          value="Team A">
 
-        <div class="admin-grid">
+      </div>
 
-            <div class="admin-card">
 
-                <h3>🏏 Teams</h3>
+      <div class="admin-field">
 
-                <p>
-                    Add and manage cricket teams.
-                </p>
+        <label>
+          Team A Score
+        </label>
 
-                <button onclick="adminMessage('Teams management')">
-                    MANAGE TEAMS
-                </button>
+        <input
+          id="adminScoreA"
+          type="text"
+          value="85/3">
 
-            </div>
+      </div>
 
 
-            <div class="admin-card">
+      <div class="admin-field">
 
-                <h3>👤 Players</h3>
+        <label>
+          Overs
+        </label>
 
-                <p>
-                    Add players and manage player information.
-                </p>
+        <input
+          id="adminOvers"
+          type="text"
+          value="10.2">
 
-                <button onclick="adminMessage('Players management')">
-                    MANAGE PLAYERS
-                </button>
+      </div>
 
-            </div>
 
+      <div class="admin-field">
 
-            <div class="admin-card">
+        <label>
+          Team B
+        </label>
 
-                <h3>🏆 Matches</h3>
+        <input
+          id="adminTeamB"
+          type="text"
+          value="Team B">
 
-                <p>
-                    Create and manage cricket matches.
-                </p>
+      </div>
 
-                <button onclick="adminMessage('Matches management')">
-                    MANAGE MATCHES
-                </button>
 
-            </div>
+      <button
+        class="save-btn"
+        id="saveMatchButton">
 
+        💾 SAVE LIVE MATCH
 
-            <div class="admin-card">
+      </button>
 
-                <h3>🏆 Tournaments</h3>
 
-                <p>
-                    Manage tournaments and tournament details.
-                </p>
+      <div class="admin-note">
 
-                <button onclick="adminMessage('Tournaments management')">
-                    MANAGE TOURNAMENTS
-                </button>
+        Changes are saved in this browser using local storage.
+        They will appear when this website is opened again
+        on the same browser/device.
 
-            </div>
-
-
-            <div class="admin-card">
-
-                <h3>📊 Points Table</h3>
-
-                <p>
-                    Manage tournament standings and points.
-                </p>
-
-                <button onclick="adminMessage('Points table')">
-                    POINTS TABLE
-                </button>
-
-            </div>
-
-
-            <div class="admin-card">
-
-                <h3>🔴 Live Score</h3>
-
-                <p>
-                    Update live match score, wickets and overs.
-                </p>
-
-                <button onclick="adminMessage('Live score')">
-                    LIVE SCORE
-                </button>
-
-            </div>
-
-
-            <div class="admin-card">
-
-                <h3>📸 Photos & Videos</h3>
-
-                <p>
-                    Manage cricket photos and videos.
-                </p>
-
-                <button onclick="adminMessage('Photos and videos')">
-                    MANAGE MEDIA
-                </button>
-
-            </div>
-
-
-            <div class="admin-card">
-
-                <h3>📰 News & Posts</h3>
-
-                <p>
-                    Publish cricket news and website posts.
-                </p>
-
-                <button onclick="adminMessage('News and posts')">
-                    MANAGE NEWS
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <div
-            id="adminNotice"
-            style="
-                display:none;
-                margin-top:25px;
-                background:#e8f6e9;
-                color:#277b38;
-                padding:18px;
-                border-radius:12px;
-                font-weight:bold;
-            "
-        ></div>
+      </div>
 
     </div>
 
 
-    <footer class="footer">
+    <div class="admin-card">
 
-        <h2>
-            KunchitiBuzz 🏏
-        </h2>
+      <h3>
+        👨‍💻 Developer
+      </h3>
 
-        <p>
-            Admin Dashboard
-        </p>
+      <p>
+        Website Developer:
+        <strong>Cherag Dashti</strong>
+      </p>
 
-        <div class="developer">
-            Website Developed by Cherag Dashti
-        </div>
+      <p style="margin-top:8px;color:#777;">
+        KunchitiBuzz Cricket Platform
+      </p>
 
-    </footer>
+    </div>
 
+
+    <div class="admin-card">
+
+      <h3>
+        🔐 Admin Account
+      </h3>
+
+      <p>
+        Username:
+        <strong>admin</strong>
+      </p>
+
+      <p style="margin-top:7px;">
+        Password:
+        <strong>1234</strong>
+      </p>
+
+      <div class="admin-note">
+        This is a demonstration login for the
+        GitHub Pages version.
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+  class="toast"
+  id="toast">
 </div>
 
 
 <script>
 
-/* ================= LOGIN SYSTEM ================= */
+"use strict";
+
+
+/* =========================
+   BASIC ELEMENTS
+========================= */
+
+const menuButton =
+  document.getElementById("menuButton");
+
+const mobileMenu =
+  document.getElementById("mobileMenu");
+
+const mainNav =
+  document.getElementById("mainNav");
+
+const searchInput =
+  document.getElementById("searchInput");
+
+const loginButton =
+  document.getElementById("loginButton");
+
+const mobileLoginButton =
+  document.getElementById("mobileLoginButton");
+
+const loginOverlay =
+  document.getElementById("loginOverlay");
+
+const loginClose =
+  document.getElementById("loginClose");
+
+const loginSubmit =
+  document.getElementById("loginSubmit");
+
+const loginUsername =
+  document.getElementById("loginUsername");
+
+const loginPassword =
+  document.getElementById("loginPassword");
+
+const loginMessage =
+  document.getElementById("loginMessage");
+
+const adminPanel =
+  document.getElementById("adminPanel");
+
+const logoutButton =
+  document.getElementById("logoutButton");
+
+const saveMatchButton =
+  document.getElementById("saveMatchButton");
+
+const toast =
+  document.getElementById("toast");
+
+
+/* =========================
+   TOAST
+========================= */
+
+function showToast(message){
+
+  toast.textContent = message;
+
+  toast.classList.add("show");
+
+  setTimeout(function(){
+
+    toast.classList.remove("show");
+
+  },2200);
+
+}
+
+
+/* =========================
+   MOBILE MENU
+========================= */
+
+menuButton.addEventListener(
+  "click",
+  function(event){
+
+    event.stopPropagation();
+
+    mobileMenu.classList.toggle("open");
+
+  }
+);
+
+
+document.addEventListener(
+  "click",
+  function(event){
+
+    if(
+      !mobileMenu.contains(event.target) &&
+      !menuButton.contains(event.target)
+    ){
+
+      mobileMenu.classList.remove("open");
+
+    }
+
+  }
+);
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function goToSection(target){
+
+  const section =
+    document.getElementById(target);
+
+  if(!section){
+
+    return;
+
+  }
+
+
+  mobileMenu.classList.remove("open");
+
+
+  mainNav
+    .querySelectorAll("button")
+    .forEach(function(button){
+
+      button.classList.remove("active");
+
+      if(
+        button.getAttribute("data-target")
+        === target
+      ){
+
+        button.classList.add("active");
+
+      }
+
+    });
+
+
+  section.scrollIntoView({
+    behavior:"smooth",
+    block:"start"
+  });
+
+}
+
+
+mainNav
+  .querySelectorAll("button")
+  .forEach(function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        goToSection(
+          button.getAttribute("data-target")
+        );
+
+      }
+    );
+
+  });
+
+
+mobileMenu
+  .querySelectorAll("[data-target]")
+  .forEach(function(button){
+
+    button.addEventListener(
+      "click",
+      function(){
+
+        goToSection(
+          button.getAttribute("data-target")
+        );
+
+      }
+    );
+
+  });
+
+
+/* =========================
+   LOGIN
+========================= */
 
 function openLogin(){
 
-    var overlay = document.getElementById("loginOverlay");
+  loginOverlay.classList.add("open");
 
-    if(overlay){
+  document.body.classList.add("lock");
 
-        overlay.style.display = "flex";
+  loginMessage.textContent = "";
 
-        document.getElementById("loginMessage").innerText = "";
-
-        setTimeout(function(){
-
-            document.getElementById("loginUsername").focus();
-
-        },100);
-
-    }
+  loginUsername.focus();
 
 }
 
 
 function closeLogin(){
 
-    var overlay = document.getElementById("loginOverlay");
+  loginOverlay.classList.remove("open");
 
-    if(overlay){
-
-        overlay.style.display = "none";
-
-    }
+  document.body.classList.remove("lock");
 
 }
 
+
+loginButton.addEventListener(
+  "click",
+  openLogin
+);
+
+
+mobileLoginButton.addEventListener(
+  "click",
+  function(){
+
+    mobileMenu.classList.remove("open");
+
+    openLogin();
+
+  }
+);
+
+
+loginClose.addEventListener(
+  "click",
+  closeLogin
+);
+
+
+/* =========================
+   ADMIN LOGIN
+========================= */
 
 function doLogin(){
 
-    var username =
-        document.getElementById("loginUsername").value.trim();
+  const username =
+    loginUsername.value.trim();
 
-    var password =
-        document.getElementById("loginPassword").value;
-
-    var message =
-        document.getElementById("loginMessage");
+  const password =
+    loginPassword.value;
 
 
-    if(username === "admin" && password === "1234"){
+  if(
+    username === "admin" &&
+    password === "1234"
+  ){
 
-        message.style.color = "green";
+    loginMessage.style.color =
+      "#218838";
 
-        message.innerText = "Login successful!";
-
-
-        setTimeout(function(){
-
-            openAdminPanel();
-
-        },500);
-
-    }
-
-    else{
-
-        message.style.color = "red";
-
-        message.innerText =
-            "Wrong username or password.";
-
-    }
-
-}
+    loginMessage.textContent =
+      "Login successful!";
 
 
-/* ================= ADMIN PANEL ================= */
-
-function openAdminPanel(){
-
-    document.getElementById("loginOverlay").style.display = "none";
-
-    document.getElementById("mainWebsite").style.display = "none";
-
-    document.getElementById("loginOpenButton").style.display = "none";
-
-    document.getElementById("adminPanel").style.display = "block";
-
-    window.scrollTo(0,0);
-
-}
+    localStorage.setItem(
+      "kunchitiAdminLoggedIn",
+      "yes"
+    );
 
 
-function logoutAdmin(){
-
-    document.getElementById("adminPanel").style.display = "none";
-
-    document.getElementById("mainWebsite").style.display = "block";
-
-    document.getElementById("loginOpenButton").style.display = "block";
-
-    document.getElementById("loginUsername").value = "";
-
-    document.getElementById("loginPassword").value = "";
-
-    document.getElementById("loginMessage").innerText = "";
-
-    window.scrollTo(0,0);
-
-}
-
-
-/* ================= ADMIN BUTTON DEMO ================= */
-
-function adminMessage(section){
-
-    var notice =
-        document.getElementById("adminNotice");
-
-    notice.style.display = "block";
-
-    notice.innerText =
-        section + " selected. Management features will be connected next.";
-
-}
-
-
-/* ================= CLOSE LOGIN ================= */
-
-document
-    .getElementById("loginOverlay")
-    .addEventListener("click", function(event){
-
-        if(event.target === this){
-
-            closeLogin();
-
-        }
-
-    });
-
-
-/* ================= ESC KEY ================= */
-
-document.addEventListener("keydown", function(event){
-
-    if(event.key === "Escape"){
+    setTimeout(
+      function(){
 
         closeLogin();
 
+        openAdminPanel();
+
+      },
+      500
+    );
+
+
+  }else{
+
+    loginMessage.style.color =
+      "#e53935";
+
+    loginMessage.textContent =
+      "Wrong username or password.";
+
+  }
+
+}
+
+
+loginSubmit.addEventListener(
+  "click",
+  doLogin
+);
+
+
+loginPassword.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Enter"){
+
+      doLogin();
+
     }
 
-});
+  }
+);
 
 
-/* ================= ENTER KEY LOGIN ================= */
+/* =========================
+   ADMIN PANEL
+========================= */
 
-document
-    .getElementById("loginPassword")
-    .addEventListener("keydown", function(event){
+function openAdminPanel(){
 
-        if(event.key === "Enter"){
+  loadAdminData();
 
-            doLogin();
+  adminPanel.classList.add("open");
+
+  window.scrollTo({
+    top:0,
+    behavior:"instant"
+  });
+
+}
+
+
+function closeAdminPanel(){
+
+  adminPanel.classList.remove("open");
+
+}
+
+
+logoutButton.addEventListener(
+  "click",
+  function(){
+
+    localStorage.removeItem(
+      "kunchitiAdminLoggedIn"
+    );
+
+    closeAdminPanel();
+
+    showToast(
+      "Admin logged out"
+    );
+
+  }
+);
+
+
+/* =========================
+   SAVE LIVE MATCH
+========================= */
+
+function saveMatch(){
+
+  const matchTitle =
+    document.getElementById(
+      "adminMatchTitle"
+    ).value.trim();
+
+  const teamA =
+    document.getElementById(
+      "adminTeamA"
+    ).value.trim();
+
+  const scoreA =
+    document.getElementById(
+      "adminScoreA"
+    ).value.trim();
+
+  const overs =
+    document.getElementById(
+      "adminOvers"
+    ).value.trim();
+
+  const teamB =
+    document.getElementById(
+      "adminTeamB"
+    ).value.trim();
+
+
+  localStorage.setItem(
+    "kunchitiMatchTitle",
+    matchTitle
+  );
+
+  localStorage.setItem(
+    "kunchitiTeamA",
+    teamA
+  );
+
+  localStorage.setItem(
+    "kunchitiScoreA",
+    scoreA
+  );
+
+  localStorage.setItem(
+    "kunchitiOvers",
+    overs
+  );
+
+  localStorage.setItem(
+    "kunchitiTeamB",
+    teamB
+  );
+
+
+  updateWebsite();
+
+
+  showToast(
+    "Live match updated successfully"
+  );
+
+}
+
+
+saveMatchButton.addEventListener(
+  "click",
+  saveMatch
+);
+
+
+/* =========================
+   LOAD ADMIN DATA
+========================= */
+
+function loadAdminData(){
+
+  const title =
+    localStorage.getItem(
+      "kunchitiMatchTitle"
+    );
+
+  const teamA =
+    localStorage.getItem(
+      "kunchitiTeamA"
+    );
+
+  const scoreA =
+    localStorage.getItem(
+      "kunchitiScoreA"
+    );
+
+  const overs =
+    localStorage.getItem(
+      "kunchitiOvers"
+    );
+
+  const teamB =
+    localStorage.getItem(
+      "kunchitiTeamB"
+    );
+
+
+  if(title){
+
+    document.getElementById(
+      "adminMatchTitle"
+    ).value = title;
+
+  }
+
+
+  if(teamA){
+
+    document.getElementById(
+      "adminTeamA"
+    ).value = teamA;
+
+  }
+
+
+  if(scoreA){
+
+    document.getElementById(
+      "adminScoreA"
+    ).value = scoreA;
+
+  }
+
+
+  if(overs){
+
+    document.getElementById(
+      "adminOvers"
+    ).value = overs;
+
+  }
+
+
+  if(teamB){
+
+    document.getElementById(
+      "adminTeamB"
+    ).value = teamB;
+
+  }
+
+}
+
+
+/* =========================
+   UPDATE WEBSITE
+========================= */
+
+function updateWebsite(){
+
+  const title =
+    localStorage.getItem(
+      "kunchitiMatchTitle"
+    );
+
+  const teamA =
+    localStorage.getItem(
+      "kunchitiTeamA"
+    );
+
+  const scoreA =
+    localStorage.getItem(
+      "kunchitiScoreA"
+    );
+
+  const overs =
+    localStorage.getItem(
+      "kunchitiOvers"
+    );
+
+  const teamB =
+    localStorage.getItem(
+      "kunchitiTeamB"
+    );
+
+
+  if(title){
+
+    document.getElementById(
+      "websiteMatchTitle"
+    ).textContent = title;
+
+  }
+
+
+  if(teamA){
+
+    document.getElementById(
+      "websiteTeamA"
+    ).textContent = teamA;
+
+  }
+
+
+  if(scoreA){
+
+    document.getElementById(
+      "websiteScoreA"
+    ).textContent = scoreA;
+
+  }
+
+
+  if(overs){
+
+    document.getElementById(
+      "websiteOvers"
+    ).textContent =
+      overs + " overs";
+
+  }
+
+
+  if(teamB){
+
+    document.getElementById(
+      "websiteTeamB"
+    ).textContent = teamB;
+
+  }
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+searchInput.addEventListener(
+  "input",
+  function(){
+
+    const query =
+      searchInput.value
+      .trim()
+      .toLowerCase();
+
+    const items =
+      document.querySelectorAll(
+        "[data-search]"
+      );
+
+
+    items.forEach(
+      function(item){
+
+        const text =
+          item.getAttribute(
+            "data-search"
+          ).toLowerCase();
+
+
+        if(
+          !query ||
+          text.includes(query)
+        ){
+
+          item.style.display = "";
+
+        }else{
+
+          item.style.display = "none";
 
         }
 
-    });
+      }
+    );
+
+  }
+);
+
+
+/* =========================
+   LOGIN OVERLAY CLICK
+========================= */
+
+loginOverlay.addEventListener(
+  "click",
+  function(event){
+
+    if(
+      event.target === loginOverlay
+    ){
+
+      closeLogin();
+
+    }
+
+  }
+);
+
+
+/* =========================
+   ESC KEY
+========================= */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Escape"){
+
+      closeLogin();
+
+      mobileMenu.classList.remove(
+        "open"
+      );
+
+    }
+
+  }
+);
+
+
+/* =========================
+   START
+========================= */
+
+updateWebsite();
+
 
 </script>
 
