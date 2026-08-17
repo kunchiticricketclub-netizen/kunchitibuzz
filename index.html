@@ -3,1066 +3,1162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>KunchitiBuzz - Cricket</title>
 
 <style>
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f3f5f7;
-  color:#17202a;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3f5f7;
+    color:#17202a;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
 }
 
 .header{
-  background:#075e54;
-  color:white;
-  padding:18px 16px;
-  position:sticky;
-  top:0;
-  z-index:10;
+    background:#075e54;
+    color:white;
+    padding:18px 25px 25px;
 }
 
-.top{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+.header-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .logo{
-  font-size:25px;
-  font-weight:800;
+    font-size:30px;
+    font-weight:bold;
 }
 
 .logo span{
-  color:#ffd54f;
+    color:#ffd43b;
 }
 
-.menu{
-  font-size:25px;
+.menu-btn{
+    border:0;
+    background:none;
+    color:white;
+    font-size:32px;
 }
 
 .search{
-  margin-top:15px;
-  background:white;
-  border-radius:25px;
-  padding:11px 15px;
-  color:#777;
+    margin-top:18px;
+}
+
+.search input{
+    width:100%;
+    border:0;
+    outline:none;
+    border-radius:30px;
+    padding:16px 22px;
+    font-size:17px;
 }
 
 .nav{
-  background:white;
-  display:flex;
-  overflow-x:auto;
-  border-bottom:1px solid #ddd;
+    background:white;
+    display:flex;
+    gap:35px;
+    padding:18px 25px;
+    overflow-x:auto;
+    white-space:nowrap;
+    border-bottom:1px solid #ddd;
 }
 
-.nav div{
-  padding:15px 17px;
-  white-space:nowrap;
-  font-size:14px;
-  font-weight:bold;
+.nav button{
+    border:0;
+    background:none;
+    font-size:17px;
+    font-weight:bold;
+    color:#17202a;
 }
 
-.nav div:first-child{
-  color:#075e54;
-  border-bottom:3px solid #075e54;
+.nav button:hover{
+    color:#075e54;
 }
 
 .container{
-  max-width:1000px;
-  margin:auto;
-  padding:15px;
+    max-width:1100px;
+    margin:auto;
+    padding:30px 20px;
 }
 
 .section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:22px 0 12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:18px;
 }
 
 .section-title h2{
-  font-size:20px;
+    font-size:27px;
 }
 
-.section-title a{
-  color:#087f70;
-  font-size:13px;
-  font-weight:bold;
+.view-all{
+    color:#087f6e;
+    font-weight:bold;
 }
 
 .live-card{
-  background:white;
-  border-radius:12px;
-  padding:17px;
-  box-shadow:0 2px 8px #00000012;
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
 }
 
 .live-label{
-  color:#e53935;
-  font-weight:bold;
-  font-size:13px;
-  margin-bottom:12px;
+    color:#e53935;
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:25px;
 }
 
 .match-title{
-  color:#777;
-  font-size:13px;
-  margin-bottom:15px;
+    text-align:center;
+    color:#777;
+    font-size:17px;
+    margin-bottom:25px;
 }
 
 .teams{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    text-align:center;
 }
 
 .team{
-  text-align:center;
-  width:38%;
+    width:40%;
 }
 
-.team-logo{
-  width:55px;
-  height:55px;
-  margin:auto;
-  border-radius:50%;
-  background:#e8f5f3;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
+.team-icon{
+    width:90px;
+    height:90px;
+    border-radius:50%;
+    background:#eaf7f5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:42px;
+    margin:auto;
 }
 
-.team-name{
-  margin-top:8px;
-  font-weight:bold;
+.team h3{
+    margin-top:12px;
+    font-size:23px;
 }
 
 .score{
-  margin-top:5px;
-  font-size:18px;
-  font-weight:bold;
+    font-size:30px;
+    font-weight:bold;
+    margin-top:5px;
+}
+
+.overs{
+    margin-top:5px;
+    color:#555;
 }
 
 .vs{
-  font-weight:bold;
-  color:#999;
+    font-size:24px;
+    font-weight:bold;
+    color:#888;
 }
 
-.status{
-  text-align:center;
-  margin-top:17px;
-  padding:10px;
-  border-radius:8px;
-  background:#e8f5e9;
-  color:#218838;
-  font-size:13px;
-  font-weight:bold;
+.live-ground{
+    margin-top:25px;
+    background:#e8f6e9;
+    color:#27833d;
+    padding:14px;
+    border-radius:12px;
+    text-align:center;
+    font-weight:bold;
 }
 
 .cards{
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
 }
 
 .card{
-  min-width:230px;
-  background:white;
-  border-radius:12px;
-  padding:15px;
-  box-shadow:0 2px 8px #00000010;
-}
-
-.card small{
-  color:#888;
+    background:white;
+    padding:22px;
+    border-radius:16px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07);
 }
 
 .card h3{
-  margin:10px 0;
-  font-size:16px;
+    font-size:20px;
+    margin:10px 0;
 }
 
-.result{
-  color:#087f70;
-  font-size:13px;
-  font-weight:bold;
+.card p{
+    color:#666;
+}
+
+.status{
+    color:#087f6e;
+    font-weight:bold;
+    margin-top:12px;
 }
 
 .tournament{
-  background:linear-gradient(135deg,#075e54,#087f70);
-  color:white;
-  border-radius:14px;
-  padding:20px;
+    margin-top:30px;
+    background:#075e54;
+    color:white;
+    border-radius:20px;
+    padding:30px;
 }
 
 .tournament h2{
-  margin-bottom:8px;
+    font-size:28px;
+    margin-bottom:10px;
 }
 
 .tournament p{
-  font-size:13px;
-  opacity:.9;
+    margin-top:8px;
+    color:#d9efec;
 }
 
-.button{
-  display:inline-block;
-  margin-top:15px;
-  padding:10px 16px;
-  background:#ffd54f;
-  color:#222;
-  border-radius:7px;
-  font-weight:bold;
-  font-size:13px;
+.login-btn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    background:#075e54;
+    color:white;
+    border:0;
+    padding:15px 22px;
+    border-radius:30px;
+    font-weight:bold;
+    box-shadow:0 5px 20px rgba(0,0,0,.25);
+    z-index:1000;
 }
 
-.points{
-  background:white;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 2px 8px #00000010;
+.login-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:13px;
+.login-box{
+    width:100%;
+    max-width:430px;
+    background:white;
+    border-radius:20px;
+    padding:28px;
+    box-shadow:0 10px 40px rgba(0,0,0,.35);
 }
 
-th,td{
-  padding:12px 9px;
-  text-align:center;
-  border-bottom:1px solid #eee;
+.login-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-th{
-  background:#f5f7f8;
-  color:#555;
+.login-header h2{
+    color:#075e54;
 }
 
-.player{
-  min-width:160px;
-  background:white;
-  border-radius:12px;
-  padding:15px;
-  text-align:center;
-  box-shadow:0 2px 8px #00000010;
+.close-login{
+    font-size:30px;
+    border:0;
+    background:none;
 }
 
-.avatar{
-  width:65px;
-  height:65px;
-  margin:auto;
-  border-radius:50%;
-  background:#d9eeee;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:28px;
+.login-box input{
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    border:1px solid #ccc;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
 }
 
-.player h3{
-  margin-top:9px;
-  font-size:15px;
+.login-submit{
+    width:100%;
+    padding:15px;
+    margin-top:15px;
+    background:#075e54;
+    color:white;
+    border:0;
+    border-radius:10px;
+    font-size:17px;
+    font-weight:bold;
 }
 
-.player p{
-  color:#777;
-  font-size:12px;
-  margin-top:5px;
+.login-message{
+    margin-top:15px;
+    font-weight:bold;
 }
 
-.media{
-  min-width:240px;
-  height:140px;
-  border-radius:12px;
-  background:linear-gradient(135deg,#263238,#607d8b);
-  color:white;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding:14px;
-  position:relative;
-  overflow:hidden;
+.demo{
+    margin-top:15px;
+    color:#777;
 }
 
-.play{
-  position:absolute;
-  top:45px;
-  left:50%;
-  transform:translateX(-50%);
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:white;
-  color:#075e54;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
+.admin-panel{
+    display:none;
+    background:#eef2f3;
+    min-height:100vh;
+    padding-bottom:50px;
 }
 
-.media h3{
-  font-size:14px;
+.admin-header{
+    background:#075e54;
+    color:white;
+    padding:22px;
 }
 
-.news{
-  background:white;
-  border-radius:12px;
-  padding:15px;
-  margin-bottom:10px;
-  box-shadow:0 2px 7px #0000000d;
+.admin-header-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-.news h3{
-  font-size:15px;
-  margin-bottom:6px;
+.admin-header h1{
+    font-size:26px;
 }
 
-.news p{
-  color:#777;
-  font-size:12px;
+.logout{
+    background:#e53935;
+    color:white;
+    border:0;
+    padding:10px 16px;
+    border-radius:8px;
+    font-weight:bold;
 }
 
-.bottom{
-  margin-top:30px;
-  background:#17202a;
-  color:white;
-  padding:30px 18px;
-  text-align:center;
+.admin-container{
+    max-width:1100px;
+    margin:auto;
+    padding:25px 20px;
 }
 
-.bottom h2{
-  margin-bottom:8px;
+.welcome{
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    margin-bottom:25px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
 }
 
-.bottom p{
-  color:#aaa;
-  font-size:12px;
-}
-
-@media(min-width:700px){
-
-  .container{
-    padding:25px;
-  }
-
-  .cards{
+.admin-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    overflow:visible;
-  }
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
 
-  .card{
-    min-width:0;
-  }
+.admin-card{
+    background:white;
+    padding:25px;
+    border-radius:16px;
+    box-shadow:0 3px 12px rgba(0,0,0,.07);
+    border-left:5px solid #075e54;
+}
 
+.admin-card h3{
+    color:#075e54;
+    margin-bottom:8px;
+}
+
+.admin-card p{
+    color:#666;
+    margin-bottom:15px;
+}
+
+.admin-card button{
+    background:#075e54;
+    color:white;
+    border:0;
+    padding:10px 15px;
+    border-radius:8px;
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat{
+    background:white;
+    padding:20px;
+    text-align:center;
+    border-radius:14px;
+}
+
+.stat strong{
+    display:block;
+    font-size:28px;
+    color:#075e54;
+}
+
+.footer{
+    background:#123;
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+    margin-top:40px;
+}
+
+.footer h2{
+    margin-bottom:10px;
+}
+
+.developer{
+    margin-top:18px;
+    color:#ffd43b;
+    font-weight:bold;
+    font-size:16px;
+}
+
+.hidden{
+    display:none !important;
+}
+
+@media(max-width:700px){
+
+    .logo{
+        font-size:25px;
+    }
+
+    .nav{
+        gap:25px;
+        padding:15px;
+    }
+
+    .container{
+        padding:25px 15px;
+    }
+
+    .teams{
+        gap:5px;
+    }
+
+    .team{
+        width:42%;
+    }
+
+    .team-icon{
+        width:70px;
+        height:70px;
+        font-size:32px;
+    }
+
+    .team h3{
+        font-size:19px;
+    }
+
+    .score{
+        font-size:25px;
+    }
+
+    .cards{
+        grid-template-columns:1fr;
+    }
+
+    .admin-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
 }
 </style>
 </head>
 
 <body>
 
+<!-- ================= MAIN WEBSITE ================= -->
+
+<div id="mainWebsite">
+
 <header class="header">
 
-  <div class="top">
+    <div class="header-top">
 
-    <div class="logo">
-      Kunchiti<span>Buzz</span> 🏏
+        <div class="logo">
+            Kunchiti<span>Buzz</span> 🏏
+        </div>
+
+        <button class="menu-btn" onclick="alert('Menu coming soon')">
+            ☰
+        </button>
+
     </div>
 
-    <div class="menu">
-      ☰
+    <div class="search">
+        <input
+            type="text"
+            placeholder="🔍 Search matches, teams, players..."
+        >
     </div>
-
-  </div>
-
-  <div class="search">
-    🔍 Search matches, teams, players...
-  </div>
 
 </header>
 
 <nav class="nav">
 
-  <div>HOME</div>
-  <div>LIVE</div>
-  <div>MATCHES</div>
-  <div>TOURNAMENTS</div>
-  <div>TEAMS</div>
-  <div>PLAYERS</div>
-  <div>VIDEOS</div>
-  <div>NEWS</div>
+    <button>HOME</button>
+    <button>LIVE</button>
+    <button>MATCHES</button>
+    <button>TOURNAMENTS</button>
+    <button>TEAMS</button>
+    <button>PLAYERS</button>
 
 </nav>
 
+
 <main class="container">
 
-<section>
+    <!-- LIVE MATCH -->
 
-  <div class="section-title">
-    <h2>🔴 Live Matches</h2>
-    <a>VIEW ALL</a>
-  </div>
-
-  <div class="live-card">
-
-    <div class="live-label">
-      ● LIVE NOW
+    <div class="section-title">
+        <h2>🔴 Live Matches</h2>
+        <span class="view-all">VIEW ALL</span>
     </div>
 
-    <div class="match-title">
-      MAHROOM SHEYAQ KNOCK OUT CRICKET TOURNAMENT
-    </div>
+    <div class="live-card">
 
-    <div class="teams">
-
-      <div class="team">
-
-        <div class="team-logo">
-          🏏
+        <div class="live-label">
+            🔴 LIVE NOW
         </div>
 
-        <div class="team-name">
-          Team A
+        <div class="match-title">
+            MAHROOM SHEYAQ KNOCK OUT CRICKET TOURNAMENT
         </div>
 
-        <div class="score">
-          85/3
+        <div class="teams">
+
+            <div class="team">
+
+                <div class="team-icon">
+                    🏏
+                </div>
+
+                <h3>Team A</h3>
+
+                <div class="score">
+                    85/3
+                </div>
+
+                <div class="overs">
+                    10.2 overs
+                </div>
+
+            </div>
+
+            <div class="vs">
+                VS
+            </div>
+
+            <div class="team">
+
+                <div class="team-icon">
+                    🏏
+                </div>
+
+                <h3>Team B</h3>
+
+                <div class="score">
+                    Yet to bat
+                </div>
+
+            </div>
+
         </div>
 
-        <small>
-          10.2 overs
-        </small>
-
-      </div>
-
-      <div class="vs">
-        VS
-      </div>
-
-      <div class="team">
-
-        <div class="team-logo">
-          🏏
+        <div class="live-ground">
+            Live Score • Dasht Kunchiti Cricket Ground
         </div>
 
-        <div class="team-name">
-          Team B
+    </div>
+
+
+    <!-- RECENT MATCHES -->
+
+    <div class="section-title" style="margin-top:40px;">
+        <h2>🏏 Recent Matches</h2>
+        <span class="view-all">VIEW ALL</span>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <small>
+                17 AUG • KNOCKOUT
+            </small>
+
+            <h3>
+                Shaheed Mehboob Jan vs Shaheed Yar Jan
+            </h3>
+
+            <div class="status">
+                Match completed
+            </div>
+
         </div>
 
-        <div class="score">
-          Yet to bat
+        <div class="card">
+
+            <small>
+                16 AUG • LEAGUE
+            </small>
+
+            <h3>
+                Kunchiti Stars vs Team B
+            </h3>
+
+            <div class="status">
+                Team A won
+            </div>
+
         </div>
 
-      </div>
-
-    </div>
-
-    <div class="status">
-      Live Score • Dasht Kunchiti Cricket Ground
-    </div>
-
-  </div>
-
-</section>
-
-
-<section>
-
-  <div class="section-title">
-
-    <h2>🏏 Recent Matches</h2>
-
-    <a>
-      VIEW ALL
-    </a>
-
-  </div>
-
-  <div class="cards">
-
-    <div class="card">
-
-      <small>
-        17 AUG • KNOCKOUT
-      </small>
-
-      <h3>
-        Shaheed Mehboob Jan vs Shaheed Yar Jan
-      </h3>
-
-      <div class="result">
-        Match completed
-      </div>
-
     </div>
 
 
-    <div class="card">
+    <!-- FEATURED TOURNAMENT -->
 
-      <small>
-        16 AUG • LEAGUE
-      </small>
-
-      <h3>
-        Kunchiti Stars vs Dasht XI
-      </h3>
-
-      <div class="result">
-        Team A won
-      </div>
-
+    <div class="section-title" style="margin-top:40px;">
+        <h2>🏆 Featured Tournament</h2>
     </div>
 
+    <div class="tournament">
 
-    <div class="card">
+        <h2>
+            MAHROOM SHEYAQ KNOCK OUT
+        </h2>
 
-      <small>
-        15 AUG • LEAGUE
-      </small>
+        <p>
+            Cricket Tournament
+        </p>
 
-      <h3>
-        Dasht Warriors vs Kunchiti Club
-      </h3>
+        <p>
+            Dasht Kunchiti Cricket Ground
+        </p>
 
-      <div class="result">
-        Team B won
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section>
-
-  <div class="section-title">
-
-    <h2>
-      🏆 Featured Tournament
-    </h2>
-
-  </div>
-
-  <div class="tournament">
-
-    <h2>
-      MAHROOM SHEYAQ KNOCK OUT
-    </h2>
-
-    <p>
-      Cricket Tournament • Dasht Kunchiti
-    </p>
-
-    <p style="margin-top:7px;">
-      Follow matches, teams, players, results and points table.
-    </p>
-
-    <div class="button">
-      EXPLORE TOURNAMENT
-    </div>
-
-  </div>
-
-</section>
-
-
-<section>
-
-  <div class="section-title">
-
-    <h2>
-      📊 Points Table
-    </h2>
-
-    <a>
-      FULL TABLE
-    </a>
-
-  </div>
-
-  <div class="points">
-
-    <table>
-
-      <tr>
-
-        <th>#</th>
-        <th>TEAM</th>
-        <th>P</th>
-        <th>W</th>
-        <th>L</th>
-        <th>PTS</th>
-
-      </tr>
-
-      <tr>
-
-        <td>1</td>
-        <td>Team A</td>
-        <td>3</td>
-        <td>3</td>
-        <td>0</td>
-        <td>6</td>
-
-      </tr>
-
-      <tr>
-
-        <td>2</td>
-        <td>Team B</td>
-        <td>3</td>
-        <td>2</td>
-        <td>1</td>
-        <td>4</td>
-
-      </tr>
-
-      <tr>
-
-        <td>3</td>
-        <td>Team C</td>
-        <td>3</td>
-        <td>1</td>
-        <td>2</td>
-        <td>2</td>
-
-      </tr>
-
-    </table>
-
-  </div>
-
-</section>
-
-
-<section>
-
-  <div class="section-title">
-
-    <h2>
-      ⭐ Featured Players
-    </h2>
-
-    <a>
-      ALL PLAYERS
-    </a>
-
-  </div>
-
-  <div class="cards">
-
-    <div class="player">
-
-      <div class="avatar">
-        👤
-      </div>
-
-      <h3>
-        Player Name
-      </h3>
-
-      <p>
-        All-Rounder
-      </p>
-
-      <p>
-        Matches: 12 • Runs: 340
-      </p>
+        <p>
+            Follow matches, teams, players, results and points table.
+        </p>
 
     </div>
-
-
-    <div class="player">
-
-      <div class="avatar">
-        👤
-      </div>
-
-      <h3>
-        Player Name
-      </h3>
-
-      <p>
-        Batsman
-      </p>
-
-      <p>
-        Matches: 10 • Runs: 410
-      </p>
-
-    </div>
-
-
-    <div class="player">
-
-      <div class="avatar">
-        👤
-      </div>
-
-      <h3>
-        Player Name
-      </h3>
-
-      <p>
-        Bowler
-      </p>
-
-      <p>
-        Matches: 11 • Wickets: 18
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section>
-
-  <div class="section-title">
-
-    <h2>
-      🎬 Videos & Highlights
-    </h2>
-
-    <a>
-      SEE ALL
-    </a>
-
-  </div>
-
-  <div class="cards">
-
-    <div class="media">
-
-      <div class="play">
-        ▶
-      </div>
-
-      <h3>
-        Winning Moments
-      </h3>
-
-    </div>
-
-
-    <div class="media">
-
-      <div class="play">
-        ▶
-      </div>
-
-      <h3>
-        Best Batting Performance
-      </h3>
-
-    </div>
-
-
-    <div class="media">
-
-      <div class="play">
-        ▶
-      </div>
-
-      <h3>
-        Match Highlights
-      </h3>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<section>
-
-  <div class="section-title">
-
-    <h2>
-      📰 Latest Cricket News
-    </h2>
-
-    <a>
-      MORE NEWS
-    </a>
-
-  </div>
-
-
-  <div class="news">
-
-    <h3>
-      Tournament action continues in Dasht Kunchiti
-    </h3>
-
-    <p>
-      Latest match updates, results and tournament information.
-    </p>
-
-  </div>
-
-
-  <div class="news">
-
-    <h3>
-      Local teams prepare for the next big match
-    </h3>
-
-    <p>
-      Follow KunchitiBuzz for live cricket updates.
-    </p>
-
-  </div>
-
-
-  <div class="news">
-
-    <h3>
-      Player performances and match statistics
-    </h3>
-
-    <p>
-      Explore player records and tournament history.
-    </p>
-
-  </div>
-
-</section>
 
 </main>
 
 
-<footer class="bottom">
+<footer class="footer">
 
-  <h2>
-    KunchitiBuzz 🏏
-  </h2>
+    <h2>
+        KunchitiBuzz 🏏
+    </h2>
 
-  <p>
-    Your local cricket platform
-  </p>
+    <p>
+        Your local cricket platform
+    </p>
 
-  <p style="margin-top:12px;">
-    Live Scores • Tournaments • Teams • Players • Videos
-  </p>
+    <p style="margin-top:10px;">
+        Live Scores • Tournaments • Teams • Players • Matches
+    </p>
+
+    <div class="developer">
+        Website Developed by Cherag Dashti
+    </div>
 
 </footer>
 
-
-<!-- LOGIN SYSTEM -->
-
-<style>
-
-.login-btn{
-  position:fixed;
-  top:18px;
-  right:60px;
-  z-index:100;
-  background:#ffffff;
-  color:#075e54;
-  border:0;
-  padding:10px 18px;
-  border-radius:8px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.login-overlay{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.65);
-  z-index:9999;
-  align-items:center;
-  justify-content:center;
-}
-
-.login-box{
-  width:90%;
-  max-width:380px;
-  background:white;
-  padding:25px;
-  border-radius:15px;
-  box-shadow:0 10px 40px rgba(0,0,0,.3);
-}
-
-.login-box h2{
-  margin-top:0;
-  color:#075e54;
-}
-
-.login-box input{
-  width:100%;
-  padding:13px;
-  margin:8px 0;
-  border:1px solid #ccc;
-  border-radius:8px;
-  box-sizing:border-box;
-}
-
-.login-submit{
-  width:100%;
-  padding:13px;
-  margin-top:10px;
-  background:#075e54;
-  color:white;
-  border:0;
-  border-radius:8px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.login-close{
-  float:right;
-  font-size:25px;
-  cursor:pointer;
-}
-
-#loginMessage{
-  margin-top:10px;
-  font-weight:bold;
-}
-
-</style>
+</div>
 
 
-<!-- LOGIN BUTTON -->
+<!-- ================= LOGIN BUTTON ================= -->
 
 <button
-  type="button"
-  class="login-btn"
-  onclick="openLogin()">
-
-  LOGIN
-
+    class="login-btn"
+    onclick="openLogin()"
+    id="loginOpenButton"
+>
+    ADMIN LOGIN
 </button>
 
 
-<!-- LOGIN POPUP -->
+<!-- ================= LOGIN POPUP ================= -->
 
 <div
-  class="login-overlay"
-  id="loginOverlay">
+    class="login-overlay"
+    id="loginOverlay"
+>
 
-  <div class="login-box">
+    <div class="login-box">
 
-    <span
-      class="login-close"
-      onclick="closeLogin()">
+        <div class="login-header">
 
-      ×
+            <h2>
+                KunchitiBuzz Login
+            </h2>
 
-    </span>
+            <button
+                class="close-login"
+                onclick="closeLogin()"
+            >
+                ×
+            </button>
 
-    <h2>
-      KunchitiBuzz Login
-    </h2>
+        </div>
 
-    <input
-      type="text"
-      id="loginUsername"
-      placeholder="Username">
 
-    <input
-      type="password"
-      id="loginPassword"
-      placeholder="Password">
+        <input
+            type="text"
+            id="loginUsername"
+            placeholder="Username"
+            autocomplete="username"
+        >
 
-    <button
-      class="login-submit"
-      type="button"
-      onclick="doLogin()">
+        <input
+            type="password"
+            id="loginPassword"
+            placeholder="Password"
+            autocomplete="current-password"
+        >
 
-      LOGIN
+        <button
+            class="login-submit"
+            onclick="doLogin()"
+        >
+            LOGIN
+        </button>
 
-    </button>
+        <div
+            class="login-message"
+            id="loginMessage"
+        ></div>
 
-    <div id="loginMessage"></div>
+        <div class="demo">
+            Demo login: <b>admin / 1234</b>
+        </div>
 
-  </div>
+    </div>
+
+</div>
+
+
+<!-- ================= ADMIN PANEL ================= -->
+
+<div
+    class="admin-panel"
+    id="adminPanel"
+>
+
+    <header class="admin-header">
+
+        <div class="admin-header-top">
+
+            <h1>
+                🛠 KunchitiBuzz Admin Panel
+            </h1>
+
+            <button
+                class="logout"
+                onclick="logoutAdmin()"
+            >
+                LOGOUT
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <div class="admin-container">
+
+        <div class="welcome">
+
+            <h2>
+                Welcome, Admin 👋
+            </h2>
+
+            <p style="margin-top:8px;color:#666;">
+                Manage your KunchitiBuzz cricket website from here.
+            </p>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats">
+
+            <div class="stat">
+                <strong>0</strong>
+                Teams
+            </div>
+
+            <div class="stat">
+                <strong>0</strong>
+                Players
+            </div>
+
+            <div class="stat">
+                <strong>0</strong>
+                Matches
+            </div>
+
+            <div class="stat">
+                <strong>1</strong>
+                Tournament
+            </div>
+
+        </div>
+
+
+        <!-- ADMIN OPTIONS -->
+
+        <div class="admin-grid">
+
+            <div class="admin-card">
+
+                <h3>🏏 Teams</h3>
+
+                <p>
+                    Add and manage cricket teams.
+                </p>
+
+                <button onclick="adminMessage('Teams management')">
+                    MANAGE TEAMS
+                </button>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <h3>👤 Players</h3>
+
+                <p>
+                    Add players and manage player information.
+                </p>
+
+                <button onclick="adminMessage('Players management')">
+                    MANAGE PLAYERS
+                </button>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <h3>🏆 Matches</h3>
+
+                <p>
+                    Create and manage cricket matches.
+                </p>
+
+                <button onclick="adminMessage('Matches management')">
+                    MANAGE MATCHES
+                </button>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <h3>🏆 Tournaments</h3>
+
+                <p>
+                    Manage tournaments and tournament details.
+                </p>
+
+                <button onclick="adminMessage('Tournaments management')">
+                    MANAGE TOURNAMENTS
+                </button>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <h3>📊 Points Table</h3>
+
+                <p>
+                    Manage tournament standings and points.
+                </p>
+
+                <button onclick="adminMessage('Points table')">
+                    POINTS TABLE
+                </button>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <h3>🔴 Live Score</h3>
+
+                <p>
+                    Update live match score, wickets and overs.
+                </p>
+
+                <button onclick="adminMessage('Live score')">
+                    LIVE SCORE
+                </button>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <h3>📸 Photos & Videos</h3>
+
+                <p>
+                    Manage cricket photos and videos.
+                </p>
+
+                <button onclick="adminMessage('Photos and videos')">
+                    MANAGE MEDIA
+                </button>
+
+            </div>
+
+
+            <div class="admin-card">
+
+                <h3>📰 News & Posts</h3>
+
+                <p>
+                    Publish cricket news and website posts.
+                </p>
+
+                <button onclick="adminMessage('News and posts')">
+                    MANAGE NEWS
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="adminNotice"
+            style="
+                display:none;
+                margin-top:25px;
+                background:#e8f6e9;
+                color:#277b38;
+                padding:18px;
+                border-radius:12px;
+                font-weight:bold;
+            "
+        ></div>
+
+    </div>
+
+
+    <footer class="footer">
+
+        <h2>
+            KunchitiBuzz 🏏
+        </h2>
+
+        <p>
+            Admin Dashboard
+        </p>
+
+        <div class="developer">
+            Website Developed by Cherag Dashti
+        </div>
+
+    </footer>
 
 </div>
 
 
 <script>
 
+/* ================= LOGIN SYSTEM ================= */
+
 function openLogin(){
 
-  document.getElementById(
-    "loginOverlay"
-  ).style.display = "flex";
+    var overlay = document.getElementById("loginOverlay");
+
+    if(overlay){
+
+        overlay.style.display = "flex";
+
+        document.getElementById("loginMessage").innerText = "";
+
+        setTimeout(function(){
+
+            document.getElementById("loginUsername").focus();
+
+        },100);
+
+    }
 
 }
 
 
 function closeLogin(){
 
-  document.getElementById(
-    "loginOverlay"
-  ).style.display = "none";
+    var overlay = document.getElementById("loginOverlay");
+
+    if(overlay){
+
+        overlay.style.display = "none";
+
+    }
 
 }
 
 
 function doLogin(){
 
-  const username =
-    document.getElementById(
-      "loginUsername"
-    ).value.trim();
+    var username =
+        document.getElementById("loginUsername").value.trim();
 
-  const password =
-    document.getElementById(
-      "loginPassword"
-    ).value.trim();
+    var password =
+        document.getElementById("loginPassword").value;
 
-  const message =
-    document.getElementById(
-      "loginMessage"
-    );
+    var message =
+        document.getElementById("loginMessage");
 
 
-  if(
-    username === "admin" &&
-    password === "1234"
-  ){
+    if(username === "admin" && password === "1234"){
 
-    message.style.color = "green";
+        message.style.color = "green";
 
-    message.innerText =
-      "Login successful! Opening Admin Panel...";
+        message.innerText = "Login successful!";
 
 
-    setTimeout(function(){
+        setTimeout(function(){
 
-    window.location.href = "./admin.html";
+            openAdminPanel();
+
+        },500);
 
     }
 
+    else{
 
-  }else{
+        message.style.color = "red";
 
-    message.style.color = "red";
+        message.innerText =
+            "Wrong username or password.";
 
-    message.innerText =
-      "Wrong username or password.";
-
-  }
+    }
 
 }
+
+
+/* ================= ADMIN PANEL ================= */
+
+function openAdminPanel(){
+
+    document.getElementById("loginOverlay").style.display = "none";
+
+    document.getElementById("mainWebsite").style.display = "none";
+
+    document.getElementById("loginOpenButton").style.display = "none";
+
+    document.getElementById("adminPanel").style.display = "block";
+
+    window.scrollTo(0,0);
+
+}
+
+
+function logoutAdmin(){
+
+    document.getElementById("adminPanel").style.display = "none";
+
+    document.getElementById("mainWebsite").style.display = "block";
+
+    document.getElementById("loginOpenButton").style.display = "block";
+
+    document.getElementById("loginUsername").value = "";
+
+    document.getElementById("loginPassword").value = "";
+
+    document.getElementById("loginMessage").innerText = "";
+
+    window.scrollTo(0,0);
+
+}
+
+
+/* ================= ADMIN BUTTON DEMO ================= */
+
+function adminMessage(section){
+
+    var notice =
+        document.getElementById("adminNotice");
+
+    notice.style.display = "block";
+
+    notice.innerText =
+        section + " selected. Management features will be connected next.";
+
+}
+
+
+/* ================= CLOSE LOGIN ================= */
+
+document
+    .getElementById("loginOverlay")
+    .addEventListener("click", function(event){
+
+        if(event.target === this){
+
+            closeLogin();
+
+        }
+
+    });
+
+
+/* ================= ESC KEY ================= */
+
+document.addEventListener("keydown", function(event){
+
+    if(event.key === "Escape"){
+
+        closeLogin();
+
+    }
+
+});
+
+
+/* ================= ENTER KEY LOGIN ================= */
+
+document
+    .getElementById("loginPassword")
+    .addEventListener("keydown", function(event){
+
+        if(event.key === "Enter"){
+
+            doLogin();
+
+        }
+
+    });
 
 </script>
 
