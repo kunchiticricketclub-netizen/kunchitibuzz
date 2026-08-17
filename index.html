@@ -161,8 +161,8 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
 "use strict";
-const URL="https://ugcfqlmlgassxlblxdpp.supabase.co",KEY="sb_publishable_So36Lmg66kA0ewDTYk0Zlw_bxGcoTkd";
-const db=window.supabase.createClient(URL,KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+const SUPABASE_URL="https://ugcfqlmlgassxlblxdpp.supabase.co",SUPABASE_KEY="sb_publishable_So36Lmg66kA0ewDTYk0Zlw_bxGcoTkd";
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 const S={tournaments:[],liveMatches:[],teams:[],players:[],tournamentTeams:[],stages:[],rosters:[],matches:[],matchPlayers:[],innings:[],standings:[],admins:[],session:null,profile:null,publicMatch:null,scorerMatch:null,scorerInnings:null,deliveries:[],selectedRuns:0};
 const $=id=>document.getElementById(id), esc=v=>String(v??"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]));
 let toastTimer,refreshTimer;
@@ -341,5 +341,5 @@ function realtime(){["tournaments","teams","players","tournament_teams","tournam
 async function init(){await loadData();realtime();const q=await db.auth.getSession();if(q.data.session){const p=await membership(q.data.session.user.id);if(p){S.session=q.data.session;S.profile=p;$("adminOpen").textContent="🛠 Admin Panel"}}}
 init();
 </script>
-<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2cbf96c3af02097',t:'MTc4NzAwNDI2NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a2cc0c6a4fbcd56b',t:'MTc4NzAwNTA0Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
